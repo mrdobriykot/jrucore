@@ -1,2 +1,7 @@
-package creatures.grass;public class Plant {
+package creatures.grass;
+
+
+public class Plant {
+
+
 }
