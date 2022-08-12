@@ -1,6 +1,6 @@
 package creatures;
 
-public abstract class Creatures {
+public abstract class Creature {
     int [][] position;
 
     public int[][] getPosition() {
@@ -11,7 +11,7 @@ public abstract class Creatures {
         this.position = position;
     }
 
-    protected Creatures(int[][] position) {
+    protected Creature(int[][] position) {
         this.position = position;
     }
 }
