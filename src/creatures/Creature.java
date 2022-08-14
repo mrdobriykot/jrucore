@@ -1,6 +1,6 @@
 package creatures;
 
-import behaivior.Mortal;
+import behavior.Mortal;
 import field.Cell;
 import field.Coordinates;
 import field.Field;

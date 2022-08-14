@@ -1,9 +1,9 @@
 package creatures.animals;
 
 import creatures.Creature;
-import behaivior.Breeding;
-import behaivior.Eating;
-import behaivior.Moving;
+import behavior.Breeding;
+import behavior.Eating;
+import behavior.Moving;
 import field.Coordinates;
 import lombok.Getter;
 

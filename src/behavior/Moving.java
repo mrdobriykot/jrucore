@@ -1,4 +1,4 @@
-package behaivior;
+package behavior;
 
 public interface Moving {
     default void move() {

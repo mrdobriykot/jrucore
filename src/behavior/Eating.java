@@ -1,4 +1,4 @@
-package behaivior;
+package behavior;
 
 import creatures.Creature;
 
