@@ -1,4 +1,4 @@
-package creatures.behaivior;
+package behaivior;
 
 public interface Moving {
     default void move() {

@@ -1,19 +1,44 @@
 package creatures;
 
+import behaivior.Mortal;
+import field.Cell;
 import field.Coordinates;
+import field.Field;
+import lombok.ToString;
 
-public abstract class Creature {
-    int [][] position;
+@ToString
+public abstract class Creature implements Mortal {
+    Coordinates position;
+    boolean isAlive;
 
-    public int[][] getPosition() {
+    protected Creature (int x, int y) {
+        position.setX(x);
+        position.setY(y);
+        comeToStartCell(position);
+    }
+
+    public Creature(Coordinates position) {
+        this.position = position;
+        comeToStartCell(position);
+    }
+
+    public Coordinates getPosition() {
         return position;
     }
 
-    public void setPosition(int[][] position) {
-        this.position = position;
+    public void setPosition(int x, int y) {
+        position.setX(x);
+        position.setY(y);
     }
 
-    protected Creature(Coordinates position) {
-        this.position = position;
+    public void comeToStartCell(Coordinates position) {
+        Cell cell = Field.instance.getCell(position.getX(), position.getY());
+        cell.addCreatureInCell(this);
+    }
+
+    @Override
+    public void dead() {
+        Mortal.super.dead();
+        isAlive = false;
     }
 }

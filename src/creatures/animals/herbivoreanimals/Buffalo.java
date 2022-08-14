@@ -2,17 +2,8 @@ package creatures.animals.herbivoreanimals;
 
 import lombok.Generated;
 
+@Generated
 public class Buffalo extends HerbivoreAnimal{
-
-    int weight;
-    int maxCapacityInCell;
-    int energy;
-    int hunger;
-
-    @Generated
-    public Buffalo(int[][] position) {
-        super(position);
-    }
 
     public Buffalo(int x, int y) {
         super(x, y);
@@ -21,7 +12,7 @@ public class Buffalo extends HerbivoreAnimal{
     {
         this.weight = 700;
         this.maxCapacityInCell = 10;
-        this.hunger = 3;
-        this.energy = 100;
+        this.energy = 3;
+        this.hanger = 50;
     }
 }

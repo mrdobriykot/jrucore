@@ -2,15 +2,6 @@ package creatures.animals.herbivoreanimals;
 
 public class Duck extends HerbivoreAnimal{
 
-    int weight;
-    int maxCapacityInCell;
-    double energy;
-    int hunger;
-
-    public Duck(int[][] position) {
-        super(position);
-    }
-
     public Duck(int x, int y) {
         super(x, y);
     }
@@ -18,7 +9,7 @@ public class Duck extends HerbivoreAnimal{
     {
         this.weight = 1;
         this.maxCapacityInCell = 200;
-        this.hunger = 4;
-        this.energy = 0.15;
+        this.energy = 4;
+        this.hanger = 0.15;
     }
 }

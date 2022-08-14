@@ -2,17 +2,18 @@ package creatures.grass;
 
 
 import creatures.Creature;
+import field.Coordinates;
 
 public class Plant extends Creature {
     int weight;
     int maxCapacitySell;
 
-    public Plant(int[][] position) {
+    public Plant(Coordinates position) {
         super(position);
     }
 
     public Plant(int x, int y) {
-        super(new int[][]{{x,y}});
+        super(x,y);
     }
 
     {

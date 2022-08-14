@@ -3,10 +3,6 @@ package creatures.animals.carnivoreanimals;
 import field.Coordinates;
 
 public class Wolf extends CarnivoreAnimal {
-    public Wolf(Coordinates position) {
-        super(position);
-    }
-
     public Wolf(int x, int y) {
         super(x, y);
     }

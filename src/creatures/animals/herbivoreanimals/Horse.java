@@ -2,15 +2,6 @@ package creatures.animals.herbivoreanimals;
 
 public class Horse extends HerbivoreAnimal{
 
-    int weight;
-    int maxCapacityInCell;
-    int energy;
-    int hunger;
-
-    public Horse(int[][] position) {
-        super(position);
-    }
-
     public Horse(int x, int y) {
         super(x, y);
     }
@@ -18,7 +9,7 @@ public class Horse extends HerbivoreAnimal{
     {
         this.weight = 400;
         this.maxCapacityInCell = 20;
-        this.hunger = 4;
-        this.energy = 60;
+        this.energy = 4;
+        this.hanger = 60;
     }
 }

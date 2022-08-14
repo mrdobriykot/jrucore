@@ -1,12 +1,12 @@
 package creatures.animals.carnivoreanimals;
 
 import field.Coordinates;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 public class Bear extends CarnivoreAnimal{
-
-    public Bear(Coordinates position) {
-        super(position);
-    }
 
     public Bear(int x, int y) {
         super(x, y);
