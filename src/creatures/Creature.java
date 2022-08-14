@@ -1,25 +1,25 @@
 package creatures;
 
 import behavior.Mortal;
-import field.Cell;
-import field.Coordinates;
-import field.Field;
+import island.Coordinates;
+import lombok.Getter;
 import lombok.ToString;
 
+@Getter
 @ToString
 public abstract class Creature implements Mortal {
     Coordinates position;
     boolean isAlive;
+    protected String name;
 
     protected Creature (int x, int y) {
         position.setX(x);
         position.setY(y);
-        comeToStartCell(position);
     }
 
     public Creature(Coordinates position) {
         this.position = position;
-        comeToStartCell(position);
+
     }
 
     public Coordinates getPosition() {
@@ -31,14 +31,15 @@ public abstract class Creature implements Mortal {
         position.setY(y);
     }
 
-    public void comeToStartCell(Coordinates position) {
-        Cell cell = Field.instance.getCell(position.getX(), position.getY());
-        cell.addCreatureInCell(this);
-    }
-
     @Override
     public void dead() {
         Mortal.super.dead();
         isAlive = false;
+    }
+
+    @Override
+    public String toString() {
+        return "{" + name +
+                '}';
     }
 }

@@ -1,16 +1,22 @@
 package creatures.animals.carnivoreanimals;
 
-import field.Coordinates;
+import Annotation.MaxCapacity;
+import island.Coordinates;
 
+@MaxCapacity(30)
 public class Fox extends CarnivoreAnimal{
     public Fox(int x, int y) {
         super(x, y);
     }
 
+    public Fox(Coordinates position) {
+        super(position);
+    }
+
     {
-        this.weight = 8;
-        this.maxCapacityInCell = 30;
-        this.energy = 2;
-        this.hanger = 2;
+        name = "Лиса";
+        weight = 8;
+        energy = 2;
+        hanger = 2;
     }
 }

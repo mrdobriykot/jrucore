@@ -1,7 +1,7 @@
 package creatures.animals.carnivoreanimals;
 
 import creatures.animals.Animal;
-import field.Coordinates;
+import island.Coordinates;
 
 public abstract class CarnivoreAnimal extends Animal {
 

@@ -4,7 +4,7 @@ import creatures.Creature;
 import behavior.Breeding;
 import behavior.Eating;
 import behavior.Moving;
-import field.Coordinates;
+import island.Coordinates;
 import lombok.Getter;
 
 @Getter

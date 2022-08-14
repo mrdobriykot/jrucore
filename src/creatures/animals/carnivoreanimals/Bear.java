@@ -1,21 +1,27 @@
 package creatures.animals.carnivoreanimals;
 
-import field.Coordinates;
+import Annotation.MaxCapacity;
+import island.Coordinates;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
+@MaxCapacity(5)
 public class Bear extends CarnivoreAnimal{
 
     public Bear(int x, int y) {
         super(x, y);
     }
 
+    public Bear(Coordinates position) {
+        super(position);
+    }
+
     {
-        this.weight = 500;
-        this.maxCapacityInCell = 5;
-        this.energy = 2;
-        this.hanger = 80;
+        name = "Медведь";
+        weight = 500;
+        energy = 2;
+        hanger = 80;
     }
 }
