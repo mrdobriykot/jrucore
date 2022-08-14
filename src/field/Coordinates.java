@@ -9,10 +9,8 @@ import lombok.ToString;
 @Setter
 @ToString
 public class Coordinates {
-    int x = 0;
-    int y = 0;
-
-    public Coordinates() {}
+    int x;
+    int y;
 
     public Coordinates(int x, int y) {
         this.x = x;

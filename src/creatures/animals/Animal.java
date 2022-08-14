@@ -1,14 +1,25 @@
 package creatures.animals;
 
 import creatures.Creature;
+import creatures.behaivior.Breeding;
+import creatures.behaivior.Eating;
+import creatures.behaivior.Moving;
+import field.Coordinates;
+import lombok.Getter;
 
-public abstract class Animal extends Creature {
+@Getter
+public abstract class Animal extends Creature implements Eating, Moving, Breeding {
 
-    protected Animal(int[][] position) {
+    protected double weight;
+    protected int maxCapacityInCell;
+    protected int energy;
+    protected double hanger;
+
+    protected Animal(Coordinates position) {
         super(position);
     }
 
     public Animal(int x, int y) {
-        super(new int[][]{{x, y}});
+        super(new Coordinates(x,y));
     }
 }

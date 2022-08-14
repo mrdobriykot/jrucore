@@ -1,15 +1,9 @@
 package creatures.animals.carnivoreanimals;
 
-import creatures.animals.carnivoreanimals.CarnivoreAnimal;
+import field.Coordinates;
 
 public class Wolf extends CarnivoreAnimal {
-
-    int weight;
-    int maxCapacityInCell;
-    int energy;
-    int hunger;
-
-    public Wolf(int[][] position) {
+    public Wolf(Coordinates position) {
         super(position);
     }
 
@@ -21,6 +15,6 @@ public class Wolf extends CarnivoreAnimal {
         this.weight = 50;
         this.maxCapacityInCell = 30;
         this.energy = 3;
-        this.hunger = 8;
+        this.hanger = 8;
     }
 }

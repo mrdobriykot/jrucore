@@ -1,13 +1,10 @@
 package creatures.animals.carnivoreanimals;
 
+import field.Coordinates;
+
 public class Bear extends CarnivoreAnimal{
 
-    int weight;
-    int maxCapacityInCell;
-    int energy;
-    int hunger;
-
-    public Bear(int[][] position) {
+    public Bear(Coordinates position) {
         super(position);
     }
 
@@ -19,6 +16,6 @@ public class Bear extends CarnivoreAnimal{
         this.weight = 500;
         this.maxCapacityInCell = 5;
         this.energy = 2;
-        this.hunger = 80;
+        this.hanger = 80;
     }
 }

@@ -1,5 +1,7 @@
 package creatures;
 
+import field.Coordinates;
+
 public abstract class Creature {
     int [][] position;
 
@@ -11,7 +13,7 @@ public abstract class Creature {
         this.position = position;
     }
 
-    protected Creature(int[][] position) {
+    protected Creature(Coordinates position) {
         this.position = position;
     }
 }

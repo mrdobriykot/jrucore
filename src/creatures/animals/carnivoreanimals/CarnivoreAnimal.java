@@ -1,10 +1,11 @@
 package creatures.animals.carnivoreanimals;
 
 import creatures.animals.Animal;
+import field.Coordinates;
 
 public abstract class CarnivoreAnimal extends Animal {
 
-    public CarnivoreAnimal(int[][] position) {
+    public CarnivoreAnimal(Coordinates position) {
         super(position);
     }
 

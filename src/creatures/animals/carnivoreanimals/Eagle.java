@@ -1,13 +1,10 @@
 package creatures.animals.carnivoreanimals;
 
+import field.Coordinates;
+
 public class Eagle extends CarnivoreAnimal{
 
-    int weight;
-    int maxCapacityInCell;
-    int energy;
-    int hunger;
-
-    public Eagle(int[][] position) {
+    public Eagle(Coordinates position) {
         super(position);
     }
 
@@ -19,6 +16,6 @@ public class Eagle extends CarnivoreAnimal{
         this.weight = 6;
         this.maxCapacityInCell = 20;
         this.energy = 3;
-        this.hunger = 1;
+        this.hanger = 1;
     }
 }
