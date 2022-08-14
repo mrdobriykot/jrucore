@@ -3,8 +3,6 @@ package creatures.animals.carnivoreanimals;
 import Annotation.MaxCapacity;
 import island.Coordinates;
 
-import java.security.DrbgParameters;
-
 @MaxCapacity(30)
 public class Wolf extends CarnivoreAnimal {
     public Wolf(int x, int y) {

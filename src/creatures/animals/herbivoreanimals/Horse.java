@@ -1,15 +1,23 @@
 package creatures.animals.herbivoreanimals;
 
+import Annotation.MaxCapacity;
+import island.Coordinates;
+
+@MaxCapacity(20)
 public class Horse extends HerbivoreAnimal{
 
     public Horse(int x, int y) {
         super(x, y);
     }
 
+    public Horse(Coordinates coordinates) {
+        super(coordinates);
+    }
+
     {
-        this.weight = 400;
-        this.maxCapacityInCell = 20;
-        this.energy = 4;
-        this.hanger = 60;
+        name = "Лошадь";
+        weight = 400;
+        energy = 4;
+        hanger = 60;
     }
 }

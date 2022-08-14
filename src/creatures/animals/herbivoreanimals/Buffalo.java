@@ -1,18 +1,24 @@
 package creatures.animals.herbivoreanimals;
 
-import lombok.Generated;
 
-@Generated
+import Annotation.MaxCapacity;
+import island.Coordinates;
+
+@MaxCapacity(10)
 public class Buffalo extends HerbivoreAnimal{
 
     public Buffalo(int x, int y) {
         super(x, y);
     }
 
+    public Buffalo(Coordinates position) {
+        super(position);
+    }
+
     {
-        this.weight = 700;
-        this.maxCapacityInCell = 10;
-        this.energy = 3;
-        this.hanger = 50;
+        name = "Буйвол";
+        weight = 700;
+        energy = 3;
+        hanger = 50;
     }
 }
