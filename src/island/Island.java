@@ -16,7 +16,7 @@ public class Island {
 
     private Island() {
         island = new Cell[xSize][ySize];
-        getIslandInfo();
+        initialiseIsland();
     }
     public static Island createNewStandardField() {
         return instance;
@@ -34,10 +34,19 @@ public class Island {
     public Cell getCell(int x, int y) {
         return island[x][y];
     }
+
+    private void initialiseIsland() {
+        for (int i = 0; i < xSize; i++) {
+            for (int j = 0; j < ySize; j++) {
+                island[i][j] = new Cell(i, j);
+            }
+        }
+    }
+
     public void getIslandInfo() {
         for (int i = 0; i < getXSize(); i++) {
             for (int j = 0; j < getYSize(); j++) {
-                island[i][j] = new Cell(i, j);
+                System.out.println(getCell(i, j));
             }
         }
     }
