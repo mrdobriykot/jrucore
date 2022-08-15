@@ -1,7 +1,7 @@
 package creatures.animals.herbivoreanimals;
 
 
-import Annotation.MaxCapacity;
+import annotation.MaxCapacity;
 import island.Coordinates;
 
 @MaxCapacity(140)
