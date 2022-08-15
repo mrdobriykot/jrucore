@@ -1,6 +1,6 @@
 package island;
 
-import Annotation.MaxCapacity;
+import annotation.MaxCapacity;
 import creatures.Creature;
 import lombok.ToString;
 

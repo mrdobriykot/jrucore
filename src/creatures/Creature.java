@@ -1,7 +1,9 @@
 package creatures;
 
 import behavior.Mortal;
+import island.Cell;
 import island.Coordinates;
+import island.Island;
 import lombok.Getter;
 import lombok.ToString;
 
