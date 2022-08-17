@@ -1,5 +1,8 @@
 package island;
 
+import lombok.Getter;
+
+@Getter
 public class Island {
 
     public static final Island instance = new Island();
