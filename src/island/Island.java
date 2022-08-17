@@ -1,18 +1,18 @@
-package field;
+package island;
 
-public class Field {
+public class Island {
 
-    public static final Field instance = new Field();
+    public static final Island instance = new Island();
 
     Cell[][] field;
     private int xSize = 100;
     private int ySize = 20;
 
-    private Field() {
+    private Island() {
         field = new Cell[xSize][ySize];
         initialiseField();
     }
-    public Field createNewStandardField() {
+    public Island createNewStandardField() {
         return instance;
     }
     public Cell getCell(int x, int y) {

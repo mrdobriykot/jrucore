@@ -1,7 +1,5 @@
 package creatures.animals.carnivoreanimals;
 
-import field.Coordinates;
-
 public class Eagle extends CarnivoreAnimal{
 
     public Eagle(int x, int y) {
@@ -9,9 +7,10 @@ public class Eagle extends CarnivoreAnimal{
     }
 
     {
-        this.weight = 6;
-        this.maxCapacityInCell = 20;
-        this.energy = 3;
-        this.hanger = 1;
+        name = "Орел";
+        weight = 6;
+        maxCapacityInCell = 20;
+        energy = 3;
+        hanger = 1;
     }
 }

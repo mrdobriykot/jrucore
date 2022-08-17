@@ -1,16 +1,15 @@
 package creatures.animals.carnivoreanimals;
 
-import field.Coordinates;
-
 public class Snake extends CarnivoreAnimal{
     public Snake(int x, int y) {
         super(x, y);
     }
 
     {
-        this.weight = 15;
-        this.maxCapacityInCell = 30;
-        this.energy = 1;
-        this.hanger = 3;
+        name = "Змея";
+        weight = 15;
+        maxCapacityInCell = 30;
+        energy = 1;
+        hanger = 3;
     }
 }

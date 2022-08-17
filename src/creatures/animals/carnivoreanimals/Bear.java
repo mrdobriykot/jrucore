@@ -1,6 +1,5 @@
 package creatures.animals.carnivoreanimals;
 
-import field.Coordinates;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,9 +12,10 @@ public class Bear extends CarnivoreAnimal{
     }
 
     {
-        this.weight = 500;
-        this.maxCapacityInCell = 5;
-        this.energy = 2;
-        this.hanger = 80;
+        name = "Медведь";
+        weight = 500;
+        maxCapacityInCell = 5;
+        energy = 2;
+        hanger = 80;
     }
 }

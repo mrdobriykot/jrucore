@@ -2,7 +2,7 @@ package creatures.grass;
 
 
 import creatures.Creature;
-import field.Coordinates;
+import island.Coordinates;
 
 public class Plant extends Creature {
     int weight;
