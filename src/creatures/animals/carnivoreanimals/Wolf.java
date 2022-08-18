@@ -1,5 +1,8 @@
 package creatures.animals.carnivoreanimals;
 
+import annotation.MaxCapacityInCell;
+
+@MaxCapacityInCell(30)
 public class Wolf extends CarnivoreAnimal {
     public Wolf(int x, int y) {
         super(x, y);
