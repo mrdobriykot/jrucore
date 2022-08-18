@@ -1,6 +1,7 @@
 package creatures.animals.carnivoreanimals;
 
 import annotation.MaxCapacityInCell;
+import island.Coordinates;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,6 +12,10 @@ public class Bear extends CarnivoreAnimal{
 
     public Bear(int x, int y) {
         super(x, y);
+    }
+
+    public Bear (Coordinates coordinates) {
+        super(coordinates);
     }
 
     {
