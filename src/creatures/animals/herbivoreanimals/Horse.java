@@ -1,5 +1,8 @@
 package creatures.animals.herbivoreanimals;
 
+import annotation.MaxCapacityInCell;
+
+@MaxCapacityInCell(20)
 public class Horse extends HerbivoreAnimal{
 
     public Horse(int x, int y) {
@@ -7,9 +10,9 @@ public class Horse extends HerbivoreAnimal{
     }
 
     {
-        this.weight = 400;
-        this.maxCapacityInCell = 20;
-        this.energy = 4;
-        this.hanger = 60;
+        name = "Лошадь";
+        weight = 400;
+        energy = 4;
+        hanger = 60;
     }
 }
