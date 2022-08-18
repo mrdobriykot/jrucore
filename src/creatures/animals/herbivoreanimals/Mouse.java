@@ -1,17 +1,12 @@
 package creatures.animals.herbivoreanimals;
 
 
-import annotation.MaxCapacity;
-import island.Coordinates;
+import annotation.MaxCapacityInCell;
 
-@MaxCapacity(500)
+@MaxCapacityInCell(500)
 public class Mouse extends HerbivoreAnimal{
     public Mouse(int x, int y) {
         super(x, y);
-    }
-
-    public Mouse(Coordinates coordinates) {
-        super(coordinates);
     }
 
     {

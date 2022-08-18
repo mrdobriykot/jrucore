@@ -1,17 +1,12 @@
 package creatures.animals.herbivoreanimals;
 
-import annotation.MaxCapacity;
-import island.Coordinates;
+import annotation.MaxCapacityInCell;
 
-@MaxCapacity(1000)
+@MaxCapacityInCell(1000)
 public class Caterpiller extends HerbivoreAnimal{
 
     public Caterpiller(int x, int y) {
         super(x, y);
-    }
-
-    public Caterpiller(Coordinates coordinates) {
-        super(coordinates);
     }
 
     {

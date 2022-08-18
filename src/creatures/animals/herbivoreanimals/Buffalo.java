@@ -1,18 +1,13 @@
 package creatures.animals.herbivoreanimals;
 
 
-import annotation.MaxCapacity;
-import island.Coordinates;
+import annotation.MaxCapacityInCell;
 
-@MaxCapacity(10)
-public class Buffalo extends HerbivoreAnimal{
+@MaxCapacityInCell(10)
+class Buffalo extends HerbivoreAnimal{
 
     public Buffalo(int x, int y) {
         super(x, y);
-    }
-
-    public Buffalo(Coordinates position) {
-        super(position);
     }
 
     {

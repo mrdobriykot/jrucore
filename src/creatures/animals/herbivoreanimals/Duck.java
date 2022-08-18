@@ -1,17 +1,12 @@
 package creatures.animals.herbivoreanimals;
 
-import annotation.MaxCapacity;
-import island.Coordinates;
+import annotation.MaxCapacityInCell;
 
-@MaxCapacity(200)
+@MaxCapacityInCell(200)
 public class Duck extends HerbivoreAnimal{
 
     public Duck(int x, int y) {
         super(x, y);
-    }
-
-    public Duck(Coordinates coordinates) {
-        super(coordinates);
     }
 
     {

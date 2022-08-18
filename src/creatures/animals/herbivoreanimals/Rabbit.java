@@ -1,21 +1,16 @@
 package creatures.animals.herbivoreanimals;
 
 
-import annotation.MaxCapacity;
-import island.Coordinates;
+import annotation.MaxCapacityInCell;
 
-@MaxCapacity(150)
+@MaxCapacityInCell(150)
 public class Rabbit extends HerbivoreAnimal{
     public Rabbit(int x, int y) {
         super(x, y);
     }
 
-    public Rabbit(Coordinates coordinates) {
-        super(coordinates);
-    }
-
     {
-        name ="Кролик";
+        name = "Кролик";
         weight = 2;
         energy = 2;
         hanger = 0.45;
