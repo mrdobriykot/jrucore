@@ -5,7 +5,7 @@ import annotation.MaxCapacityInCell;
 import island.Coordinates;
 
 @MaxCapacityInCell(10)
-class Buffalo extends HerbivoreAnimal{
+public class Buffalo extends HerbivoreAnimal{
 
     public Buffalo(int x, int y) {
         super(x, y);
