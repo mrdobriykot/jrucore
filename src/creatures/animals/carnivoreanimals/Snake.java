@@ -1,5 +1,8 @@
 package creatures.animals.carnivoreanimals;
 
+import annotation.MaxCapacityInCell;
+
+@MaxCapacityInCell(30)
 public class Snake extends CarnivoreAnimal{
     public Snake(int x, int y) {
         super(x, y);
@@ -8,7 +11,6 @@ public class Snake extends CarnivoreAnimal{
     {
         name = "Змея";
         weight = 15;
-        maxCapacityInCell = 30;
         energy = 1;
         hanger = 3;
     }
