@@ -2,6 +2,7 @@ package simulation;
 
 import creatures.animals.carnivoreanimals.*;
 import creatures.animals.herbivoreanimals.*;
+import island.Island;
 
 import java.nio.Buffer;
 import java.util.ArrayList;
@@ -36,6 +37,8 @@ public class AnimalCreation {
         }
 
         executorService.shutdown();
+
+        Island.instance.getIslandInfo();
 
     }
 }

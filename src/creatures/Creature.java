@@ -4,8 +4,10 @@ import behavior.Mortal;
 import island.Cell;
 import island.Coordinates;
 import island.Island;
+import lombok.Getter;
 import lombok.ToString;
 
+@Getter
 @ToString
 public abstract class Creature implements Mortal {
     Coordinates position;
@@ -41,5 +43,11 @@ public abstract class Creature implements Mortal {
     public void dead() {
         Mortal.super.dead();
         isAlive = false;
+    }
+
+    @Override
+    public String toString() {
+        return "{" + name +
+                '}';
     }
 }

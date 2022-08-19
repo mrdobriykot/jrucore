@@ -9,8 +9,8 @@ public class Island {
     public static final Island instance = new Island();
 
     Cell[][] field;
-    private int xSize = 100;
-    private int ySize = 20;
+    private int xSize = 3;
+    private int ySize = 3;
 
     private Island() {
         field = new Cell[xSize][ySize];
@@ -38,4 +38,13 @@ public class Island {
             }
         }
     }
+
+    public void getIslandInfo() {
+        for (int i = 0; i < getXSize(); i++) {
+            for (int j = 0; j < getYSize(); j++) {
+                System.out.println(getCell(i, j));
+            }
+        }
+    }
+
 }

@@ -1,10 +1,8 @@
 import island.Island;
+import simulation.AnimalCreation;
 
 public class Main {
     public static void main(String[] args) {
-
-        Island field = Island.instance;
-        System.out.println(field.getCell(53,17));
-
+        AnimalCreation.creationOfAnimal();
     }
 }

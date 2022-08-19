@@ -23,6 +23,7 @@ public class AnimalDeploy implements Runnable{
 
     @Override
     public void run() {
+
         try {
             MaxCapacityInCell maxCapacityInCell = (MaxCapacityInCell) creatureClass.getAnnotation(MaxCapacityInCell.class);
             int capacity = ThreadLocalRandom.current().nextInt(0, maxCapacityInCell.value() * islandLength
