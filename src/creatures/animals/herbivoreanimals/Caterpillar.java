@@ -4,13 +4,13 @@ import annotation.MaxCapacityInCell;
 import island.Coordinates;
 
 @MaxCapacityInCell(1000)
-public class Caterpiller extends HerbivoreAnimal{
+public class Caterpillar extends HerbivoreAnimal{
 
-    public Caterpiller(int x, int y) {
+    public Caterpillar(int x, int y) {
         super(x, y);
     }
 
-    public Caterpiller(Coordinates position) {
+    public Caterpillar(Coordinates position) {
         super(position);
     }
 

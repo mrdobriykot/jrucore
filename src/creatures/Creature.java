@@ -17,12 +17,10 @@ public abstract class Creature implements Mortal {
     protected Creature (int x, int y) {
         position.setX(x);
         position.setY(y);
-        comeToStartCell(position);
     }
 
     public Creature(Coordinates position) {
         this.position = position;
-        comeToStartCell(position);
     }
 
     public Coordinates getPosition() {
@@ -32,11 +30,6 @@ public abstract class Creature implements Mortal {
     public void setPosition(int x, int y) {
         position.setX(x);
         position.setY(y);
-    }
-
-    public void comeToStartCell(Coordinates position) {
-        Cell cell = Island.instance.getCell(position.getX(), position.getY());
-        cell.addCreatureInCell(this);
     }
 
     @Override
