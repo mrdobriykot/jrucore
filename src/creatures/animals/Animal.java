@@ -11,7 +11,7 @@ import lombok.Getter;
 public abstract class Animal extends Creature implements Eating, Moving, Breeding {
 
     protected double weight;
-    protected int maxCapacityInCell;
+    protected static int maxCapacityInCell;
     protected int energy;
     protected double hanger;
 
