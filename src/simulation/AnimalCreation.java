@@ -37,10 +37,5 @@ public class AnimalCreation {
 
         executorService.shutdown();
 
-
     }
-
-
-
-
 }

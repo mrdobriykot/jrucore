@@ -1,5 +1,6 @@
 package island;
 
+import creatures.Creature;
 import lombok.Getter;
 
 @Getter
@@ -18,8 +19,17 @@ public class Island {
     public Island createNewStandardField() {
         return instance;
     }
+
+    public void addCreature(Creature creature) {
+        Cell cell = getCell(creature.getPosition());
+        cell.addCreatureInCell(creature);
+    }
     public Cell getCell(int x, int y) {
         return field[x][y];
+    }
+
+    public Cell getCell(Coordinates coordinates) {
+        return field[coordinates.getX()][coordinates.getY()];
     }
     private void initialiseField() {
         for (int i = 0; i < xSize; i++) {
