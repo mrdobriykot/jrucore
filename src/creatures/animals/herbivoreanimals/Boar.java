@@ -3,7 +3,7 @@ package creatures.animals.herbivoreanimals;
 import annotation.MaxCapacityInCell;
 import island.Coordinates;
 
-@MaxCapacityInCell(20)
+@MaxCapacityInCell(50)
 public class Boar extends HerbivoreAnimal{
     public Boar(int x, int y) {
         super(x, y);

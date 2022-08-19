@@ -2,15 +2,17 @@ package island;
 
 import creatures.Creature;
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
+@Setter
 public class Island {
 
     public static final Island instance = new Island();
 
     Cell[][] field;
-    private int xSize = 3;
-    private int ySize = 3;
+    private int xSize = 15;
+    private int ySize = 10;
 
     private Island() {
         field = new Cell[xSize][ySize];

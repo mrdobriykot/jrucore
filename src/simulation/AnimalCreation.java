@@ -4,7 +4,6 @@ import creatures.animals.carnivoreanimals.*;
 import creatures.animals.herbivoreanimals.*;
 import island.Island;
 
-import java.nio.Buffer;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
@@ -20,7 +19,7 @@ public class AnimalCreation {
         listOfTask.add(new AnimalDeploy(Wolf.class));
         listOfTask.add(new AnimalDeploy(Boar.class));
         listOfTask.add(new AnimalDeploy(Buffalo.class));
-        listOfTask.add(new AnimalDeploy(Caterpiller.class));
+        listOfTask.add(new AnimalDeploy(Caterpillar.class));
         listOfTask.add(new AnimalDeploy(Deer.class));
         listOfTask.add(new AnimalDeploy(Duck.class));
         listOfTask.add(new AnimalDeploy(Goat.class));
