@@ -1,4 +1,3 @@
-import island.Island;
 import simulation.AnimalCreation;
 
 public class Main {
