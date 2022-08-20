@@ -1,7 +1,13 @@
 package behavior;
 
+import island.Cell;
+import island.Island;
+
 public interface Moving {
-    default void move() {
-        System.out.println("Создание двигается");
+    default Cell chooseDirection() {
+        System.out.println("Животное выбирает направление для движения");
+        return Island.instance.getCell(0,0);
     }
+
+    void moveTo (Cell newCell);
 }
