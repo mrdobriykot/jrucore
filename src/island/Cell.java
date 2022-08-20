@@ -2,8 +2,13 @@ package island;
 
 import annotation.MaxCapacityInCell;
 import creatures.Creature;
+import creatures.animals.carnivoreanimals.CarnivoreAnimal;
+import creatures.animals.herbivoreanimals.Caterpillar;
+import creatures.animals.herbivoreanimals.HerbivoreAnimal;
+import lombok.Getter;
 import lombok.ToString;
 
+import java.io.File;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -11,7 +16,11 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.stream.Collectors;
 
 @ToString
+@Getter
 public class Cell {
+
+    @ToString.Exclude
+    private final File JSON_ANIM_QTY = new File("/src/configfiles/capacityofCell.json");
     private Coordinates coordinates = new Coordinates();
     protected Map<String, Long> animalsInCell = new ConcurrentHashMap<>();
     protected Map<String, Integer> currentCapacityOfCell = new ConcurrentHashMap<>();
@@ -39,4 +48,17 @@ public class Cell {
             currentCapacityOfCell.put(creature.getName(), currentCapacityOfCell.get(creature.getName()) - 1);
         }
     }
+
+    public Integer getCarnivoreQty() {
+        return fauna.stream().filter(creature -> creature instanceof CarnivoreAnimal)
+                .collect(Collectors.toList())
+                .size();
+    }
+
+    public Integer getHerbivoreQty() {
+        return fauna.stream().filter(creature -> creature instanceof HerbivoreAnimal && !(creature instanceof Caterpillar))
+                .collect(Collectors.toList())
+                .size();
+    }
+
 }
