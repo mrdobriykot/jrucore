@@ -1,9 +1,11 @@
 package creatures.animals.carnivoreanimals;
 
+import annotation.EatingChanceNumber;
 import annotation.MaxCapacityInCell;
 import island.Coordinates;
 
 @MaxCapacityInCell(20)
+@EatingChanceNumber(4)
 public class Eagle extends CarnivoreAnimal{
 
     public Eagle(int x, int y) {

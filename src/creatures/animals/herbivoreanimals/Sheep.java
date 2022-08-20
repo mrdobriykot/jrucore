@@ -1,10 +1,12 @@
 package creatures.animals.herbivoreanimals;
 
 
+import annotation.EatingChanceNumber;
 import annotation.MaxCapacityInCell;
 import island.Coordinates;
 
 @MaxCapacityInCell(140)
+@EatingChanceNumber(10)
 public class Sheep extends HerbivoreAnimal{
 
     public Sheep(int x, int y) {

@@ -15,11 +15,6 @@ import java.util.List;
 @Getter
 public abstract class Animal extends Creature implements Eating, Moving, Breeding {
 
-    protected double weight;
-    protected static int maxCapacityInCell;
-    protected int energy;
-    protected double hanger;
-
     protected List<Cell> accessibleCell = new ArrayList<>();
     {
         Coordinates coordinates = this.getPosition();
