@@ -33,20 +33,19 @@ public class Cell {
     }
     public synchronized void addCreatureInCell (Creature creature) {
         fauna.add(creature);
-        animalsInCell = fauna.stream().collect(Collectors.groupingBy(e -> e.getName(), Collectors.counting()));
-        capacityOfCellInit(creature);
-        if (currentCapacityOfCell.get(creature.getName()) < 0) {
+        animalsInCell.merge(creature.getName(), 1L, Long::sum);
+        currentCapacityOfCell.putIfAbsent(creature.getName(), creature.getClass()
+                .getAnnotation(MaxCapacityInCell.class).value());
+        currentCapacityOfCell.merge(creature.getName(), 1, (oldVal, newVal) -> oldVal -newVal);
+        if (currentCapacityOfCell.get(creature.getName()) <= 0) {
+            System.err.println(String.format("Новый %s не смог появиться в этом месте, для него нет места. " +
+                    "От безысходности он сразу умирает.", creature.getName()));
             creature.dead();
-            System.err.println(String.format("Новый %s не смог появиться в этом месте, для него нет места. От безысходности он сразу умирает.", creature.getName()));
         }
     }
 
     private synchronized void capacityOfCellInit(Creature creature) {
-        if (!currentCapacityOfCell.containsKey(creature.getName())) {
-            currentCapacityOfCell.put(creature.getName(), creature.getClass().getAnnotation(MaxCapacityInCell.class).value() - 1);
-        } else {
-            currentCapacityOfCell.put(creature.getName(), currentCapacityOfCell.get(creature.getName()) - 1);
-        }
+        currentCapacityOfCell.compute(creature.getName(), (k, v) -> currentCapacityOfCell.get(k) -1);
     }
 
     public Integer getCarnivoreQty() {
