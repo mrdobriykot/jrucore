@@ -1,7 +1,8 @@
 package behavior;
 
+import creatures.animals.Animal;
+
 public interface Breeding {
-    default void breed() {
-        System.out.println(String.format("%s размножился", this));
-    }
+    Animal chooseForBreed();
+    void breed(Animal animal);
 }
