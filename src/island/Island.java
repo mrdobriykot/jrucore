@@ -35,6 +35,7 @@ public class Island {
     public Cell getCell(Coordinates coordinates) {
         return field[coordinates.getX()][coordinates.getY()];
     }
+
     private void initialiseField() {
         for (int i = 0; i < xSize; i++) {
             for (int j = 0; j < ySize; j++) {

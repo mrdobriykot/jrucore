@@ -10,8 +10,8 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class AnimalCreation {
-    private static List<Runnable> listOfTask = new ArrayList<>();
-    public static void creationOfAnimal() {
+    private List<Runnable> listOfTask = new ArrayList<>();
+    public void creationOfAnimal() {
 
         listOfTask.add(new AnimalDeploy(Bear.class));
         listOfTask.add(new AnimalDeploy(Eagle.class));
@@ -31,11 +31,7 @@ public class AnimalCreation {
 
 
         ExecutorService executorService = Executors.newCachedThreadPool();
-        executorService.submit(new GrassCreation());
-
-        for (Runnable task : listOfTask) {
-            System.out.println(executorService.submit(task));
-        }
+        listOfTask.stream().forEach(e -> executorService.submit(e));
 
         executorService.shutdown();
 

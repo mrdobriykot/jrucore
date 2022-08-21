@@ -27,8 +27,9 @@ public class AnimalBehavior implements Runnable{
 
 
 
-    public Cell choosingDirectionForEat() {
-        if(animal instanceof CarnivoreAnimal) { System.out.println(this + " выбирает направление");
+    public synchronized Cell choosingDirectionForEat() {
+        if(animal instanceof CarnivoreAnimal) {
+            //System.out.println(this + " выбирает направление");
             return animal.getAccessibleCells().stream()
                     .max(Comparator.comparing(Cell::getHerbivoreQty))
                     .orElse(randomCell()); }

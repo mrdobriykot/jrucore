@@ -69,7 +69,9 @@ public abstract class Animal extends Creature implements Eating, Moving, Breedin
                         e.getClass()
                                 .getAnnotation(EatingChanceNumber.class).value()) > 0)
                 .toList();
-        return accessibleAnimals.stream().max(Comparator.comparing(Creature::getWeight)).orElseGet(this::chooseVictim);
+        return accessibleAnimals.stream().max(Comparator.comparing(Creature::getWeight))
+                .orElse(accessibleAnimals.get(ThreadLocalRandom.current()
+                        .nextInt(0, accessibleAnimals.size())));
     }
 
     public void tryToEat(Animal victim) {
@@ -77,14 +79,14 @@ public abstract class Animal extends Creature implements Eating, Moving, Breedin
                 victim.getClass().getAnnotation(EatingChanceNumber.class).value());
         if (ThreadLocalRandom.current().nextInt(0, 101) < luck) {
             //System.out.println(String.format("%s съел %s", this.getName(), victim.getName()));
-            this.currentHanger += victim.getWeight();
+            this.setCurrentHanger(getCurrentHanger() + victim.getWeight());
             this.setStarve(3);
-            if (this.currentHanger > this.maxHunger) {
-                this.currentHanger = this.maxHunger;
+            if (this.getCurrentHanger() > this.getMaxHunger()) {
+                this.setCurrentHanger(getMaxHunger());
             }
             victim.dead();
         } else {
-            System.out.println(String.format("%s не смог съесть %s", this.getName(), victim.getName()));
+            //System.out.println(String.format("%s не смог съесть %s", this.getName(), victim.getName()));
         }
     }
 

@@ -36,12 +36,12 @@ public class Cell {
         coordinates.setX(x);
         coordinates.setY(y);
     }
-    public synchronized void addAnimalInCell(Animal animal) {
+    public void addAnimalInCell(Animal animal) {
         fauna.add(animal);
         animalsInCell.merge(animal.getName(), 1L, Long::sum);
         updateCapacity(animal);
         if (currentCapacityOfCell.get(animal.getName()) <=0 ){
-            System.err.println(String.format("%s погиб, нет места"));
+            //System.err.println(String.format("%s погиб, нет места"));
             animal.dead();
         }
     }
@@ -52,10 +52,10 @@ public class Cell {
         currentCapacityOfCell.merge(creature.getName(), 1, (oldVal, newVal) -> oldVal - newVal);
     }
 
-    public synchronized void addPlantInCell(Plant plant) {
+    public void addPlantInCell(Plant plant) {
         flora.add(plant);
         qtyOfGrass.merge(plant.getName(), 1L, Long::sum);
-        animalsInCell.merge(plant.getName(), 1L, Long::sum);
+        //animalsInCell.merge(plant.getName(), 1L, Long::sum);
     }
 
     private synchronized void capacityOfCellInit(Creature creature) {
@@ -92,7 +92,8 @@ public class Cell {
         fauna.remove(creature);
         currentCapacityOfCell.merge(creature.getName(), 1, (oldVal, newVal) -> oldVal + newVal);
 
-        if (currentCapacityOfCell.get(creature.getName()) >= creature.getClass().getAnnotation(MaxCapacityInCell.class).value()) {
+        if (currentCapacityOfCell.get(creature.getName()) >= creature.getClass()
+                .getAnnotation(MaxCapacityInCell.class).value()) {
             currentCapacityOfCell.remove(creature.getName());
         }
         removeThis(creature);
@@ -100,9 +101,13 @@ public class Cell {
 
     private void removeThis(Creature creature) {
         animalsInCell.merge(creature.getName(), 1L, (oldVal, newVal) -> oldVal - newVal);
-        if (animalsInCell.get(creature.getName()) < 0) {
+        if (animalsInCell.get(creature.getName()) < 0 || animalsInCell.get(creature.getName()) != null ) {
             animalsInCell.remove(creature.getName());
         }
+    }
+    public void killAll() {
+        fauna.stream().forEach(Creature::dead);
+        flora.stream().forEach(Creature::dead);
     }
 
 }

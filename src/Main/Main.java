@@ -1,8 +1,9 @@
-import java.util.Scanner;
+package Main;
 
 public class Main {
     private static Start start = new Start();
     public static void main(String[] args) {
-        start.startSimulation();
+        Thread newThread = new Thread(new Start());
+        newThread.start();
     }
 }
