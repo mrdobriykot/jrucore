@@ -5,6 +5,7 @@ import annotation.MaxCapacityInCell;
 import creatures.Creature;
 import creatures.animals.Animal;
 import helper.CoordinatesGenerator;
+import helper.Settings;
 import island.Coordinates;
 import island.Island;
 
@@ -13,8 +14,8 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class AnimalDeploy implements Runnable{
     Class creatureClass;
-    int islandLength = Island.instance.getXSize();
-    int islandWidth = Island.instance.getYSize();
+    int islandLength = Settings.XSize;
+    int islandWidth = Settings.YSize;
 
 
     public AnimalDeploy(Class<?> clazz) {

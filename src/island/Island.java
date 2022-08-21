@@ -1,7 +1,8 @@
 package island;
 
-import creatures.Creature;
+
 import creatures.animals.Animal;
+import helper.Settings;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,8 +13,8 @@ public class Island {
     public static final Island instance = new Island();
 
     Cell[][] field;
-    private int xSize = 5;
-    private int ySize = 5;
+    private int xSize = Settings.XSize;
+    private int ySize = Settings.YSize;;
 
     private Island() {
         field = new Cell[xSize][ySize];

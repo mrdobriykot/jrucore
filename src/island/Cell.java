@@ -4,7 +4,6 @@ import annotation.MaxCapacityInCell;
 import creatures.Creature;
 import creatures.animals.Animal;
 import creatures.animals.carnivoreanimals.CarnivoreAnimal;
-import creatures.animals.herbivoreanimals.Caterpillar;
 import creatures.animals.herbivoreanimals.HerbivoreAnimal;
 import creatures.grass.Plant;
 import lombok.Getter;
@@ -94,7 +93,7 @@ public class Cell {
         currentCapacityOfCell.merge(creature.getName(), 1, (oldVal, newVal) -> oldVal + newVal);
 
         if (currentCapacityOfCell.get(creature.getName()) >= creature.getClass().getAnnotation(MaxCapacityInCell.class).value()) {
-            removeThis(creature);
+            currentCapacityOfCell.remove(creature.getName());
         }
         removeThis(creature);
     }

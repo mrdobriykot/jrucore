@@ -10,8 +10,9 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class AnimalCreation {
+    private static List<Runnable> listOfTask = new ArrayList<>();
     public static void creationOfAnimal() {
-        List <Runnable> listOfTask = new ArrayList<>();
+
         listOfTask.add(new AnimalDeploy(Bear.class));
         listOfTask.add(new AnimalDeploy(Eagle.class));
         listOfTask.add(new AnimalDeploy(Fox.class));
