@@ -18,7 +18,9 @@ public class Boar extends HerbivoreAnimal{
     {
         name = "Кабан";
         weight = 400;
-        energy = 60;
-        hanger = 50;
+        maxEnergy = 2;
+        maxHunger = 50;
+        currentEnergy = maxEnergy;
+        currentHanger = maxHunger;
     }
 }

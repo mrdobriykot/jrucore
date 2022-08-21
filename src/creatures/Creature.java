@@ -5,8 +5,10 @@ import island.Cell;
 import island.Coordinates;
 import island.Island;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 
+@Setter
 @Getter
 @ToString
 public abstract class Creature implements Mortal {
@@ -15,8 +17,11 @@ public abstract class Creature implements Mortal {
     protected String name;
     protected double weight;
     protected static int maxCapacityInCell;
-    protected int energy;
-    protected double hanger;
+    protected int maxEnergy;
+    protected int currentEnergy;
+    protected double maxHunger;
+    protected double currentHanger;
+    protected int starve;
 
     protected Creature (int x, int y) {
         position.setX(x);

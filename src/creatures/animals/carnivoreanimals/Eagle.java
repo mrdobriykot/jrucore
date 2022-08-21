@@ -19,7 +19,9 @@ public class Eagle extends CarnivoreAnimal{
     {
         name = "Орел";
         weight = 6;
-        energy = 3;
-        hanger = 1;
+        maxEnergy = 3;
+        maxHunger = 1;
+        currentEnergy = maxEnergy;
+        currentHanger = maxHunger;
     }
 }

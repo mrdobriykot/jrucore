@@ -18,7 +18,9 @@ public class Snake extends CarnivoreAnimal{
     {
         name = "Змея";
         weight = 15;
-        energy = 1;
-        hanger = 3;
+        maxEnergy = 1;
+        currentEnergy = maxEnergy;
+        maxHunger = 3;
+        currentHanger = maxEnergy;
     }
 }

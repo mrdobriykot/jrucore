@@ -3,6 +3,7 @@ package simulation;
 
 import annotation.MaxCapacityInCell;
 import creatures.Creature;
+import creatures.animals.Animal;
 import helper.CoordinatesGenerator;
 import island.Coordinates;
 import island.Island;
@@ -29,8 +30,8 @@ public class AnimalDeploy implements Runnable{
             int capacity = ThreadLocalRandom.current().nextInt(0, maxCapacityInCell.value() * islandLength
                     * islandWidth);
             for (int i = 0; i <= capacity; i++) {
-                Island.instance.addCreature((Creature) creatureClass.getConstructor(Coordinates.class)
-                        .newInstance(CoordinatesGenerator.generateCoordinates()));
+                    Island.instance.addCreature((Animal) creatureClass.getConstructor(Coordinates.class)
+                            .newInstance(CoordinatesGenerator.generateCoordinates()));
             }
         } catch (InvocationTargetException | InstantiationException | IllegalAccessException | NoSuchMethodException e) {
             throw new RuntimeException(e);

@@ -1,6 +1,7 @@
 package island;
 
 import creatures.Creature;
+import creatures.animals.Animal;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,8 +12,8 @@ public class Island {
     public static final Island instance = new Island();
 
     Cell[][] field;
-    private int xSize = 15;
-    private int ySize = 10;
+    private int xSize = 100;
+    private int ySize = 20;
 
     private Island() {
         field = new Cell[xSize][ySize];
@@ -22,9 +23,9 @@ public class Island {
         return instance;
     }
 
-    public void addCreature(Creature creature) {
-        Cell cell = getCell(creature.getPosition());
-        cell.addCreatureInCell(creature);
+    public void addCreature(Animal animal) {
+        Cell cell = getCell(animal.getPosition());
+        cell.addAnimalInCell(animal);
     }
     public Cell getCell(int x, int y) {
         return field[x][y];
@@ -48,5 +49,4 @@ public class Island {
             }
         }
     }
-
 }

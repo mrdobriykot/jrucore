@@ -20,7 +20,9 @@ public class Buffalo extends HerbivoreAnimal{
     {
         name = "Буйвол";
         weight = 700;
-        energy = 3;
-        hanger = 50;
+        maxEnergy = 3;
+        maxHunger = 100;
+        currentEnergy = maxEnergy;
+        currentHanger = maxHunger;
     }
 }

@@ -37,7 +37,7 @@ public class AnimalCreation {
 
         executorService.shutdown();
 
-        Island.instance.getIslandInfo();
+        //Island.instance.getIslandInfo();
 
     }
 }

@@ -23,7 +23,9 @@ public class Bear extends CarnivoreAnimal{
     {
         name = "Медведь";
         weight = 500;
-        energy = 2;
-        hanger = 80;
+        maxEnergy = 2;
+        currentEnergy = maxEnergy;
+        maxHunger = 80;
+        currentHanger = maxHunger;
     }
 }

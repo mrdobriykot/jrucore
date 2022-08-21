@@ -22,34 +22,15 @@ public abstract class CarnivoreAnimal extends Animal {
     }
 
     @Override
-    public Cell chooseDirection() {
-        System.out.println(this + " выбирает направление");
-        return this.getAccessibleCell().stream()
-                .max(Comparator.comparing(Cell::getHerbivoreQty))
-                .orElseGet(() -> Island.instance.getCell(this.getPosition()));
+    public void moveTo(Cell newCell) {
+        super.moveTo(newCell);
+        this.currentEnergy--;
     }
 
     @Override
-    public void moveTo(Cell newCell) {
-        super.moveTo(newCell);
-        this.energy--;
-    }
-
-    public Animal chooseVictim() {
-        Cell cell = Island.instance.getCell(this.getPosition());
-        return (Animal) cell.getFauna().stream().max(Comparator.comparing(Creature::getWeight)).orElseGet(null);
-    }
-
-
-    public void eat(Animal animal) {
-        Integer luck = EatingChance.getEatingChance(this.getClass().getAnnotation(EatingChanceNumber.class).value(),
-                animal.getClass().getAnnotation(EatingChanceNumber.class).value());
-        if (ThreadLocalRandom.current().nextInt(0, 101) < luck) {
-            System.out.println(String.format("%s съел %s", this.getName(), animal.getName()));
-            this.hanger += animal.getWeight();
-            animal.dead();
-            this.energy--;
-        }
-        this.energy--;
+    public void eat() {
+        Animal victim = chooseVictim();
+        this.tryToEat(victim);
+        this.currentEnergy--;
     }
 }
