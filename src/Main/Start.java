@@ -21,12 +21,11 @@ public class Start implements Runnable {
     private PrintStatistic printer = new PrintStatistic();
     ExecutorService service = Executors.newSingleThreadExecutor();
     ExecutorService cachedService = Executors.newCachedThreadPool();
-    ScheduledExecutorService grassService = Executors.newScheduledThreadPool(1);
-    private ReentrantLock lock = new ReentrantLock();
+    ScheduledExecutorService grassService = Executors.newScheduledThreadPool(3);
 
     @Override
     public void run() {
-        grassService.scheduleAtFixedRate(new GrassCreation(), 0, 5, TimeUnit.MINUTES);
+        grassService.scheduleAtFixedRate(new GrassCreation(), 0, 1, TimeUnit.MINUTES);
         Scanner scanner = new Scanner(System.in);
         new AnimalCreation().creationOfAnimal();
         System.out.println("Животные и растения на своих местах. Начать симуляцию? Y/N");
@@ -47,13 +46,13 @@ public class Start implements Runnable {
                 if ("Yes".equalsIgnoreCase(answer)) {
                     startNewDay();
                 } else {
-                    apocalypse();
+                    //apocalypse();
                     break;
                 }
             }
-            if (printer.herbivoresQuantity == 0 || printer.carnivoresQuantity == 0) {
-                apocalypse();
-            }
+        }
+        if (printer.herbivoresQuantity == 0 || printer.carnivoresQuantity == 0) {
+            apocalypse();
         }
     }
 
@@ -69,17 +68,10 @@ public class Start implements Runnable {
     private void apocalypse() {
         //Arrays.stream(Island.instance.getField()).forEach(e-> Arrays.stream(e).forEach(Cell::killAll));
 
-        try {
-            grassService.shutdown();
-            grassService.awaitTermination(3, TimeUnit.SECONDS);
-            grassService.shutdownNow();
-            cachedService.shutdown();
-            cachedService.awaitTermination(3, TimeUnit.SECONDS);
-            cachedService.shutdownNow();
-            service.awaitTermination(3, TimeUnit.SECONDS);
-            service.shutdownNow();
-        } catch (InterruptedException e) {
-            System.err.println(e.getMessage());;
-        }
+        grassService.shutdown();
+        grassService.shutdownNow();
+        cachedService.shutdown();
+        cachedService.shutdownNow();
+        service.shutdownNow();
     }
 }

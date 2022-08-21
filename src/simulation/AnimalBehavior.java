@@ -30,11 +30,6 @@ public class AnimalBehavior implements Runnable{
         return animal.getAccessibleCells().get(ThreadLocalRandom.current().nextInt(0, 4));
     }
 
-    public List<Animal> chooseForBreed() {
-        Cell cell = Island.instance.getCell(animal.getPosition());
-        return cell.getFauna().stream().filter(e -> e.getName().equals(animal.getName())
-                && !(e.equals(animal)) && e.getCurrentEnergy().get() > 0).toList();
-    }
 
     public void act() {
         Cell cell = Island.instance.getCell(animal.getPosition());

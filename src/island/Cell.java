@@ -58,10 +58,6 @@ public class Cell {
         //animalsInCell.merge(plant.getName(), 1L, Long::sum);
     }
 
-    private synchronized void capacityOfCellInit(Creature creature) {
-        currentCapacityOfCell.compute(creature.getName(), (k, v) -> currentCapacityOfCell.get(k) -1);
-    }
-
     public Integer getCarnivoreQty() {
         return fauna.stream().filter(creature -> creature instanceof CarnivoreAnimal)
                 .collect(Collectors.toList())
@@ -79,27 +75,8 @@ public class Cell {
         return flora.size();
     }
 
-    public void leavingOfPlant(Creature creature) {
-        flora.remove(creature);
-        qtyOfGrass.merge(creature.getName(), 1L, (oldVal, newVal) -> oldVal - newVal);
-        if (qtyOfGrass.get(creature.getName()) < 0) {
-            qtyOfGrass.remove(creature.getName());
-        }
-        removeThis(creature);
-    }
 
-    public void leavingOfAnimal(Creature creature) {
-        fauna.remove(creature);
-        currentCapacityOfCell.merge(creature.getName(), 1, (oldVal, newVal) -> oldVal + newVal);
-
-        if (currentCapacityOfCell.get(creature.getName()) >= creature.getClass()
-                .getAnnotation(MaxCapacityInCell.class).value()) {
-            currentCapacityOfCell.remove(creature.getName());
-        }
-        removeThis(creature);
-    }
-
-    private void removeThis(Creature creature) {
+    public void removeThis(Creature creature) {
         animalsInCell.merge(creature.getName(), 1L, (oldVal, newVal) -> oldVal - newVal);
         if (animalsInCell.get(creature.getName()) < 0 || animalsInCell.get(creature.getName()) != null ) {
             animalsInCell.remove(creature.getName());

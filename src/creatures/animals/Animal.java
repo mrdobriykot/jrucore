@@ -1,6 +1,7 @@
 package creatures.animals;
 
 import annotation.EatingChanceNumber;
+import annotation.MaxCapacityInCell;
 import creatures.Creature;
 import behavior.Breeding;
 import behavior.Eating;
@@ -109,8 +110,6 @@ public abstract class Animal extends Creature implements Eating, Moving, Breedin
                 this.setCurrentHanger(getMaxHunger());
             }
             victim.dead();
-        } else {
-            //System.out.println(String.format("%s не смог съесть %s", this.getName(), victim.getName()));
         }
     }
 
@@ -136,7 +135,14 @@ public abstract class Animal extends Creature implements Eating, Moving, Breedin
     public void leaveCell() {
         {
             Cell cell = Island.instance.getCell(this.getPosition());
-            cell.leavingOfAnimal(this);
+            cell.getFauna().remove(this);
+            cell.getCurrentCapacityOfCell().merge(getName(), 1, Integer::sum);
+
+            if (cell.getCurrentCapacityOfCell().get(getName()) >= getClass()
+                    .getAnnotation(MaxCapacityInCell.class).value()) {
+                cell.getCurrentCapacityOfCell().remove(getName());
+            }
+            cell.removeThis(this);
         }
     }
 }

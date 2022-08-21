@@ -16,8 +16,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Getter
 @ToString
 public abstract class Creature implements Mortal {
-    Coordinates position;
-    boolean isAlive;
+    private Coordinates position;
+    boolean isAlive = true;
     protected String name;
     protected double weight;
     protected static int maxCapacityInCell;

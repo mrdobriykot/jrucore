@@ -34,8 +34,13 @@ public class Plant extends Creature {
     @Override
     public void leaveCell() {
         {
-            Cell cell =  Island.instance.getCell(this.getPosition());
-            cell.leavingOfPlant(this);
+            Cell cell = Island.instance.getCell(getPosition());
+            cell.getFlora().remove(this);
+            cell.getQtyOfGrass().merge(getName(), 1L, (oldVal, newVal) -> oldVal - newVal);
+            if (cell.getQtyOfGrass().get(getName()) < 0) {
+                cell.getQtyOfGrass().remove(getName());
+            }
+            cell.removeThis(this);
         }
     }
 }
