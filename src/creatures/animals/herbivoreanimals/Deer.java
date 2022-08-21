@@ -4,6 +4,8 @@ import annotation.EatingChanceNumber;
 import annotation.MaxCapacityInCell;
 import island.Coordinates;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 @MaxCapacityInCell(20)
 @EatingChanceNumber(6)
 public class Deer extends HerbivoreAnimal{
@@ -21,7 +23,7 @@ public class Deer extends HerbivoreAnimal{
         weight = 300;
         maxHunger = 4;
         maxEnergy = 50;
-        currentEnergy = maxEnergy;
+        currentEnergy = new AtomicInteger(maxEnergy);;
         currentHanger = maxHunger;
     }
 }

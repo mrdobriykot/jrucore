@@ -12,8 +12,8 @@ public class Island {
     public static final Island instance = new Island();
 
     Cell[][] field;
-    private int xSize = 100;
-    private int ySize = 20;
+    private int xSize = 5;
+    private int ySize = 5;
 
     private Island() {
         field = new Cell[xSize][ySize];

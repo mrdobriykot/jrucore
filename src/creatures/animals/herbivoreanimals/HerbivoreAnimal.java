@@ -34,7 +34,6 @@ public abstract class HerbivoreAnimal extends Animal {
         if (!list.isEmpty()) {
             Animal victim = chooseVictim();
             this.tryToEat(victim);
-            this.currentEnergy--;
         } else  if (!cell.getFlora().isEmpty()){
             Plant plant = cell.getFlora().stream().findAny().get();
             plant.dead();
@@ -43,5 +42,6 @@ public abstract class HerbivoreAnimal extends Animal {
                 currentHanger = maxHunger;
             }
         }
+        reduceEnergy();
     }
 }

@@ -30,6 +30,7 @@ public class AnimalCreation {
 
 
         ExecutorService executorService = Executors.newCachedThreadPool();
+        executorService.submit(new GrassCreation());
 
         for (Runnable task : listOfTask) {
             System.out.println(executorService.submit(task));

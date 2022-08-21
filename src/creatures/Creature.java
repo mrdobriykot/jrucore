@@ -1,12 +1,16 @@
 package creatures;
 
 import behavior.Mortal;
+import creatures.animals.Animal;
+import creatures.grass.Plant;
 import island.Cell;
 import island.Coordinates;
 import island.Island;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+
+import java.util.concurrent.atomic.AtomicInteger;
 
 @Setter
 @Getter
@@ -18,7 +22,7 @@ public abstract class Creature implements Mortal {
     protected double weight;
     protected static int maxCapacityInCell;
     protected int maxEnergy;
-    protected int currentEnergy;
+    protected AtomicInteger currentEnergy;
     protected double maxHunger;
     protected double currentHanger;
     protected int starve;
@@ -55,14 +59,31 @@ public abstract class Creature implements Mortal {
 
     public synchronized void leaveCell() {
         Cell cell =  Island.instance.getCell(this.getPosition());
-        cell.getFauna().remove(this);
-        Integer qtyOfAnimals = cell.getCurrentCapacityOfCell().get(this.getName());
-        cell.getCurrentCapacityOfCell().put(this.getName(), qtyOfAnimals - 1);
+        if (this instanceof Animal) {
+            cell.leavingOfAnimal(this);
+        } else if (this instanceof Plant) {
+            cell.leavingOfPlant(this);
+        }
     }
 
     @Override
     public String toString() {
         return "{" + name +
                 '}';
+    }
+
+    public int reduceEnergy() {
+        return currentEnergy.decrementAndGet();
+    }
+    public void restoreEnergy() {
+        currentEnergy.set(maxEnergy);
+        currentHanger -= maxEnergy;
+        if (currentHanger < 0) {
+            currentHanger = 0;
+            starve--;
+            if (starve < 0) {
+                dead();
+            }
+        }
     }
 }

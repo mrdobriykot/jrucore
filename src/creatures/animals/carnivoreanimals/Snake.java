@@ -4,6 +4,8 @@ import annotation.EatingChanceNumber;
 import annotation.MaxCapacityInCell;
 import island.Coordinates;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 @MaxCapacityInCell(30)
 @EatingChanceNumber(1)
 public class Snake extends CarnivoreAnimal{
@@ -19,7 +21,7 @@ public class Snake extends CarnivoreAnimal{
         name = "Змея";
         weight = 15;
         maxEnergy = 1;
-        currentEnergy = maxEnergy;
+        currentEnergy = new AtomicInteger(maxEnergy);;
         maxHunger = 3;
         currentHanger = maxEnergy;
     }

@@ -26,10 +26,11 @@ public class Cell {
     @ToString.Exclude
     //private final File JSON_ANIM_QTY = new File("/src/configfiles/capacityofCell.json");
     private Coordinates coordinates = new Coordinates();
-    protected Map<String, Long> animalsInCell = new ConcurrentHashMap<>();
-    protected Map<String, Integer> currentCapacityOfCell = new ConcurrentHashMap<>();
-    protected List<Animal> fauna = new CopyOnWriteArrayList<>();
-    protected List<Plant> flora = new CopyOnWriteArrayList<>();
+    private Map<String, Long> animalsInCell = new ConcurrentHashMap<>();
+    private Map<String, Integer> currentCapacityOfCell = new ConcurrentHashMap<>();
+    private Map<String, Long> qtyOfGrass = new ConcurrentHashMap<>();
+    private List<Animal> fauna = new CopyOnWriteArrayList<>();
+    private List<Plant> flora = new CopyOnWriteArrayList<>();
 
 
     public Cell(int x, int y) {
@@ -54,6 +55,7 @@ public class Cell {
 
     public synchronized void addPlantInCell(Plant plant) {
         flora.add(plant);
+        qtyOfGrass.merge(plant.getName(), 1L, Long::sum);
         animalsInCell.merge(plant.getName(), 1L, Long::sum);
     }
 
@@ -72,6 +74,36 @@ public class Cell {
                 .filter(creature -> creature instanceof HerbivoreAnimal)
                 .toList()
                 .size();
+    }
+
+    public Integer getPlantsQty() {
+        return flora.size();
+    }
+
+    public void leavingOfPlant(Creature creature) {
+        flora.remove(creature);
+        qtyOfGrass.merge(creature.getName(), 1L, (oldVal, newVal) -> oldVal - newVal);
+        if (qtyOfGrass.get(creature.getName()) < 0) {
+            qtyOfGrass.remove(creature.getName());
+        }
+        removeThis(creature);
+    }
+
+    public void leavingOfAnimal(Creature creature) {
+        fauna.remove(creature);
+        currentCapacityOfCell.merge(creature.getName(), 1, (oldVal, newVal) -> oldVal + newVal);
+
+        if (currentCapacityOfCell.get(creature.getName()) >= creature.getClass().getAnnotation(MaxCapacityInCell.class).value()) {
+            removeThis(creature);
+        }
+        removeThis(creature);
+    }
+
+    private void removeThis(Creature creature) {
+        animalsInCell.merge(creature.getName(), 1L, (oldVal, newVal) -> oldVal - newVal);
+        if (animalsInCell.get(creature.getName()) < 0) {
+            animalsInCell.remove(creature.getName());
+        }
     }
 
 }

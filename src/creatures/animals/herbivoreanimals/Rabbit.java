@@ -5,6 +5,8 @@ import annotation.EatingChanceNumber;
 import annotation.MaxCapacityInCell;
 import island.Coordinates;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 @MaxCapacityInCell(150)
 @EatingChanceNumber(7)
 public class Rabbit extends HerbivoreAnimal{
@@ -21,7 +23,7 @@ public class Rabbit extends HerbivoreAnimal{
         weight = 2;
         maxEnergy = 2;
         maxHunger = 0.45;
-        currentEnergy = maxEnergy;
+        currentEnergy = new AtomicInteger(maxEnergy);
         currentHanger = maxHunger;
     }
 }

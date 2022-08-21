@@ -6,6 +6,8 @@ import island.Coordinates;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 @Getter
 @Setter
 @MaxCapacityInCell(5)
@@ -24,7 +26,7 @@ public class Bear extends CarnivoreAnimal{
         name = "Медведь";
         weight = 500;
         maxEnergy = 2;
-        currentEnergy = maxEnergy;
+        currentEnergy = new AtomicInteger(maxEnergy);
         maxHunger = 80;
         currentHanger = maxHunger;
     }

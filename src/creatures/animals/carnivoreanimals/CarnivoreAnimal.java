@@ -24,13 +24,13 @@ public abstract class CarnivoreAnimal extends Animal {
     @Override
     public void moveTo(Cell newCell) {
         super.moveTo(newCell);
-        this.currentEnergy--;
+        reduceEnergy();
     }
 
     @Override
     public void eat() {
         Animal victim = chooseVictim();
         this.tryToEat(victim);
-        this.currentEnergy--;
+        reduceEnergy();
     }
 }

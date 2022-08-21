@@ -8,7 +8,7 @@ import java.util.concurrent.Executors;
 
 public class WorldAction implements Runnable{
 
-    ExecutorService service = Executors.newSingleThreadExecutor();
+    ExecutorService service = Executors.newCachedThreadPool();
 
     public void run() {
         for (int i = 0; i < Island.instance.getXSize(); i++) {
