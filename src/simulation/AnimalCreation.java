@@ -2,7 +2,7 @@ package simulation;
 
 import creatures.animals.carnivoreanimals.*;
 import creatures.animals.herbivoreanimals.*;
-import island.Island;
+
 
 import java.util.ArrayList;
 import java.util.List;

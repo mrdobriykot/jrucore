@@ -4,6 +4,7 @@ import annotation.EatingChanceNumber;
 import creatures.Creature;
 import creatures.animals.Animal;
 import helper.EatingChance;
+import helper.Randomizer;
 import island.Cell;
 import island.Coordinates;
 import island.Island;
@@ -29,8 +30,18 @@ public abstract class CarnivoreAnimal extends Animal {
 
     @Override
     public void eat() {
-        Animal victim = chooseVictim();
-        this.tryToEat(victim);
+        Cell cell = Island.instance.getCell(getPosition());
+        if (cell.getHerbivoreQty() > 0) {
+            Animal victim = chooseVictim();
+            tryToEat(victim);
+        } else {
+            moveTo(choosingDirectionForEat());
+        }
         reduceEnergy();
+    }
+    public Cell choosingDirectionForEat() {
+        return getAccessibleCells().stream()
+                .max(Comparator.comparing(Cell::getHerbivoreQty))
+                .orElse(accessibleCells.get(Randomizer.randomize(0, accessibleCells.size())));
     }
 }

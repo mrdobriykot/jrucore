@@ -5,6 +5,7 @@ import island.Island;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 public class WorldAction implements Runnable{
     public void run() {
@@ -18,6 +19,11 @@ public class WorldAction implements Runnable{
                             .forEach(e -> service.submit(new AnimalBehavior(e)));
                 }
             }
+        }
+        try {
+            service.awaitTermination(30, TimeUnit.MILLISECONDS);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
     }
 }

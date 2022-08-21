@@ -3,7 +3,9 @@ package creatures.grass;
 
 import annotation.MaxCapacityInCell;
 import creatures.Creature;
+import island.Cell;
 import island.Coordinates;
+import island.Island;
 import lombok.Getter;
 
 @MaxCapacityInCell(200)
@@ -27,5 +29,13 @@ public class Plant extends Creature {
     @Override
     public void dead() {
         super.dead();
+    }
+
+    @Override
+    public void leaveCell() {
+        {
+            Cell cell =  Island.instance.getCell(this.getPosition());
+            cell.leavingOfPlant(this);
+        }
     }
 }

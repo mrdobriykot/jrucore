@@ -6,6 +6,7 @@ import behavior.Breeding;
 import behavior.Eating;
 import behavior.Moving;
 import helper.EatingChance;
+import helper.Randomizer;
 import island.Cell;
 import island.Coordinates;
 import island.Island;
@@ -40,24 +41,47 @@ public abstract class Animal extends Creature implements Eating, Moving, Breedin
         if (getCurrentEnergy().get() < 0) {
             throw new RuntimeException("Нет доступных очков хода");
         }
-        this.leaveCell();
+        leaveCell();
         //System.out.println(this + " перешел в клетку " + newCell.getCoordinates());
         newCell.addAnimalInCell(this);
-        this.setPosition(newCell.getCoordinates());
-        this.initializeAccessibleCells();
+        setPosition(newCell.getCoordinates());
+        initializeAccessibleCells();
     }
 
     @Override
-    public void breed(Animal animal) {
-        try {
-            Island.instance.addCreature(this.getClass().getConstructor(Coordinates.class).newInstance(this.getPosition()));
-        } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException | InstantiationException e) {
-            System.out.println(e.getMessage());
-            throw new RuntimeException(e);
+    public void breed() {
+        List<Animal> breeders = chooseForBreed();
+        if (!breeders.isEmpty()) {
+            Animal animal = breeders.get(Randomizer.randomize(0, breeders.size()));
+            try {
+                Island.instance.addCreature(this.getClass().getConstructor(Coordinates.class).newInstance(this.getPosition()));
+            } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException |
+                     InstantiationException e) {
+                System.out.println(e.getMessage());
+                throw new RuntimeException(e);
+            }
+            animal.reduceEnergy();
+            this.reduceEnergy();
+        } else {
+            moveTo(choosingDirectionForBreed());
         }
-        animal.reduceEnergy();
-        this.reduceEnergy();
     }
+
+    public Cell choosingDirectionForBreed() {
+        return getAccessibleCells().stream()
+                .filter(e -> e.getCurrentCapacityOfCell()
+                        .containsKey(getName()))
+                .findFirst()
+                .orElse(accessibleCells.get(Randomizer.randomize(0, accessibleCells.size())));
+
+    }
+    public List<Animal> chooseForBreed() {
+        Cell cell = Island.instance.getCell(getPosition());
+        return cell.getFauna().stream().filter(e -> e.getName().equals(getName())
+                && !(e.equals(this)) && e.getCurrentEnergy().get() > 0).toList();
+    }
+
+
 
     public Animal chooseVictim() {
         Cell cell = Island.instance.getCell(this.getPosition());
@@ -108,5 +132,11 @@ public abstract class Animal extends Creature implements Eating, Moving, Breedin
         }
     }
 
-    public void endOfThisDay() {}
+    @Override
+    public void leaveCell() {
+        {
+            Cell cell = Island.instance.getCell(this.getPosition());
+            cell.leavingOfAnimal(this);
+        }
+    }
 }

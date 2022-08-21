@@ -4,6 +4,7 @@ import annotation.EatingChanceNumber;
 import creatures.animals.Animal;
 import creatures.grass.Plant;
 import helper.EatingChance;
+import helper.Randomizer;
 import island.Cell;
 import island.Coordinates;
 import island.Island;
@@ -24,24 +25,34 @@ public abstract class HerbivoreAnimal extends Animal {
     @Override
     public void eat() {
         Cell cell = Island.instance.getCell(this.getPosition());
-        List<Animal> list = cell.getFauna().stream().filter(e -> EatingChance.getEatingChance(this
-                                .getClass()
-                                .getAnnotation(EatingChanceNumber.class)
-                                .value(),
-                        e.getClass()
-                                .getAnnotation(EatingChanceNumber.class).value()) > 0)
-                .toList();
-        if (!list.isEmpty()) {
-            Animal victim = chooseVictim();
-            this.tryToEat(victim);
-        } else  if (!cell.getFlora().isEmpty()){
-            Plant plant = cell.getFlora().stream().findAny().get();
-            plant.dead();
-            currentHanger +=10;
-            if (currentHanger > maxHunger) {
-                currentHanger = maxHunger;
+        if (cell.getPlantsQty() > 0) {
+            List<Animal> list = cell.getFauna().stream().filter(e -> EatingChance.getEatingChance(this
+                                    .getClass()
+                                    .getAnnotation(EatingChanceNumber.class)
+                                    .value(),
+                            e.getClass()
+                                    .getAnnotation(EatingChanceNumber.class).value()) > 0)
+                    .toList();
+            if (!list.isEmpty()) {
+                Animal victim = chooseVictim();
+                this.tryToEat(victim);
+
+            } else  if (!cell.getFlora().isEmpty()){
+                Plant plant = cell.getFlora().stream().findAny().get();
+                plant.dead();
+                currentHanger +=10;
+                if (currentHanger > maxHunger) {
+                    currentHanger = maxHunger;
+                }
             }
+        } else {
+            moveTo(choosingDirectionForEat());
         }
         reduceEnergy();
+    }
+    public Cell choosingDirectionForEat() {
+        return getAccessibleCells().stream()
+                .max(Comparator.comparing(Cell::getHerbivoreQty))
+                .orElse(accessibleCells.get(Randomizer.randomize(0, accessibleCells.size())));
     }
 }
