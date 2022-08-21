@@ -46,7 +46,7 @@ public class Start implements Runnable {
                 if ("Yes".equalsIgnoreCase(answer)) {
                     startNewDay();
                 } else {
-                    //apocalypse();
+                    apocalypse();
                     break;
                 }
             }
