@@ -1,4 +1,4 @@
-package Main;
+package main;
 
 public class Main {
     private static Start start = new Start();

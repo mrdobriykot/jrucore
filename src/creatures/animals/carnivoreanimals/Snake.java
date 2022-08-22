@@ -9,20 +9,19 @@ import java.util.concurrent.atomic.AtomicInteger;
 @MaxCapacityInCell(30)
 @EatingChanceNumber(1)
 public class Snake extends CarnivoreAnimal{
+
+    {
+        setName("Удав");
+    }
+
     public Snake(int x, int y) {
         super(x, y);
+        init();
     }
 
     public Snake (Coordinates coordinates) {
         super(coordinates);
+        init();
     }
 
-    {
-        name = "Змея";
-        weight = 15;
-        maxEnergy = 1;
-        currentEnergy = new AtomicInteger(maxEnergy);;
-        maxHunger = 3;
-        currentHanger = maxEnergy;
-    }
 }

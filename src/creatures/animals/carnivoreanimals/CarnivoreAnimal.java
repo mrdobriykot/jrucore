@@ -10,6 +10,7 @@ import island.Coordinates;
 import island.Island;
 
 import java.util.Comparator;
+import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 public abstract class CarnivoreAnimal extends Animal {
@@ -30,9 +31,17 @@ public abstract class CarnivoreAnimal extends Animal {
 
     @Override
     public void eat() {
-        Cell cell = Island.instance.getCell(getPosition());
-        if (cell.getHerbivoreQty() > 0) {
-            Animal victim = chooseVictim();
+        Cell cell = Island.getInstance().getCell(getPosition());
+        List<Animal> accessibleAnimals = cell.getFauna().stream()
+                .filter(e -> EatingChance.getEatingChance(this
+                                .getClass()
+                                .getAnnotation(EatingChanceNumber.class)
+                                .value(),
+                        e.getClass()
+                                .getAnnotation(EatingChanceNumber.class).value()) > 0)
+                .toList();
+        if (!accessibleAnimals.isEmpty()) {
+            Animal victim = chooseVictim(accessibleAnimals);
             tryToEat(victim);
         } else {
             moveTo(choosingDirectionForEat());

@@ -9,20 +9,19 @@ import java.util.concurrent.atomic.AtomicInteger;
 @MaxCapacityInCell(30)
 @EatingChanceNumber(2)
 public class Fox extends CarnivoreAnimal{
+
+    {
+        setName("Лиса");
+    }
+
     public Fox(int x, int y) {
         super(x, y);
+        init();
     }
 
     public Fox (Coordinates coordinates) {
         super(coordinates);
+        init();
     }
 
-    {
-        name = "Лиса";
-        weight = 8;
-        maxHunger = 2;
-        maxEnergy = 2;
-        currentEnergy = new AtomicInteger(maxEnergy);;
-        currentHanger = maxHunger;
-    }
 }

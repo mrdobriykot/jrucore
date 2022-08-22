@@ -10,20 +10,17 @@ import java.util.concurrent.atomic.AtomicInteger;
 @EatingChanceNumber(5)
 public class Horse extends HerbivoreAnimal{
 
+    {
+        setName("Лошадь");
+    }
+
     public Horse(int x, int y) {
         super(x, y);
+        init();
     }
 
     public Horse(Coordinates position) {
         super(position);
-    }
-
-    {
-        name = "Лошадь";
-        weight = 400;
-        maxEnergy = 4;
-        maxHunger = 60;
-        currentEnergy = new AtomicInteger(maxEnergy);
-        currentHanger = maxHunger;
+        init();
     }
 }

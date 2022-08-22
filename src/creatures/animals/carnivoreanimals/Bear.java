@@ -14,20 +14,18 @@ import java.util.concurrent.atomic.AtomicInteger;
 @EatingChanceNumber(3)
 public class Bear extends CarnivoreAnimal{
 
+    {
+        setName("Медведь");
+    }
+
     public Bear(int x, int y) {
         super(x, y);
+        init();
     }
 
     public Bear (Coordinates coordinates) {
         super(coordinates);
+        init();
     }
 
-    {
-        name = "Медведь";
-        weight = 500;
-        maxEnergy = 2;
-        currentEnergy = new AtomicInteger(maxEnergy);
-        maxHunger = 80;
-        currentHanger = maxHunger;
-    }
 }

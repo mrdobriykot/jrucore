@@ -12,31 +12,23 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class AnimalBehavior implements Runnable{
-    public Animal animal;
+    Cell cell;
 
 
-    public AnimalBehavior(Animal behavior) {
-        animal = behavior;
+    public AnimalBehavior(Cell cell) {
+        this.cell = cell;
     }
     @Override
     public void run() {
-        do {
-            act();
-        } while (animal.getCurrentEnergy().get() != 0);
-    }
-
-
-    private Cell randomCell(){
-        return animal.getAccessibleCells().get(ThreadLocalRandom.current().nextInt(0, 4));
-    }
-
-
-    public void act() {
-        Cell cell = Island.instance.getCell(animal.getPosition());
-        if (animal.getCurrentHanger() < animal.getMaxHunger()*0.5) {
-            animal.eat();
-        } else {
-            animal.breed();
-        }
+        cell.getFauna().stream().forEach(animal -> {
+            animal.getLogList().clear();
+            do {
+                if (animal.getCurrentHanger() < animal.getMaxHunger() * 0.5) {
+                    animal.eat();
+                } else {
+                    animal.breed();
+                }
+            } while (animal.getCurrentEnergy().get() > 0);
+        });
     }
 }

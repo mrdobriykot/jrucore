@@ -10,20 +10,17 @@ import java.util.concurrent.atomic.AtomicInteger;
 @EatingChanceNumber(14)
 public class Caterpillar extends HerbivoreAnimal{
 
+    {
+        setName("Гусенница");
+    }
+
     public Caterpillar(int x, int y) {
         super(x, y);
+        init();
     }
 
     public Caterpillar(Coordinates position) {
         super(position);
-    }
-
-    {
-        name = "Гусеница";
-        weight = 0.01;
-        maxEnergy = 0;
-        maxHunger = 0;
-        currentEnergy = new AtomicInteger(maxEnergy);;
-        currentHanger = maxHunger;
+        init();
     }
 }
