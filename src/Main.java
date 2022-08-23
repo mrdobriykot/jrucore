@@ -6,7 +6,7 @@ public class Main {
         System.out.println("Длина острова равна " + Island.getInstance().getWidth());
         System.out.println("Ширина острова равна " + Island.getInstance().getHeight());
         Island.getInstance().initIsland();
-        System.out.println(Island.getInstance().getCell(1, 1).getClass());
+        System.out.println(Island.getInstance().getCell(3, 1).toString());
 
 
     }
