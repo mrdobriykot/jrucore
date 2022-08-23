@@ -18,6 +18,10 @@ public class Island {
         instance = new Island();
     }
 
+    private Island() {
+        initIsland();
+    }
+
     public static Island getInstance() {
         return instance;
     }
