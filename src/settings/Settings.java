@@ -13,7 +13,7 @@ import java.nio.file.Path;
 @Setter
 @ToString
 public class Settings {
-    public int weight;
+    public int width;
     public int height;
 
 
