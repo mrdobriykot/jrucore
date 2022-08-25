@@ -15,6 +15,8 @@ public abstract class Creature implements Mortal {
     protected Island island;
     protected boolean isAlive = true;
     protected String name;
+    protected int weight;
+    protected String emoji;
 
 
     public Creature(Coordinates coordinates, Island island) {
