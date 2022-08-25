@@ -1,4 +1,9 @@
 {
   "width": 100,
-  "height": 20
+  "height": 20,
+  "starve": 3,
+  "plantsWeight": 1,
+  "plantsCapacityPerCell": 200,
+  "plantsNutritionalValue": 10,
+  "plantEmoji" : "\uD83C\uDF3F"
 }

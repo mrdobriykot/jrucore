@@ -16,6 +16,12 @@ public class Settings {
     public int width;
     public int height;
 
+    public int starve;
+    public int plantsWeight;
+    private int plantsCapacityPerCell;
+    private int plantsNutritionalValue;
+    private String plantEmoji;
+
 
     public static Settings initialize() {
         ObjectMapper objectMapper = new ObjectMapper();
