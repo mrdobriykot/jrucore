@@ -2,6 +2,7 @@ package creatures.plants;
 
 import creatures.Creature;
 import interfaces.Mortal;
+import island.Cell;
 import island.Coordinates;
 import island.Island;
 import lombok.Getter;
@@ -26,6 +27,11 @@ public class Plants extends Creature implements Mortal {
 
     @Override
     public void leaveCell() {
+        Cell cell = island.getCell(getPosition());
 
+    }
+    @Override
+    public void die() {
+        super.die();
     }
 }

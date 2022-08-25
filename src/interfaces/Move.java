@@ -1,5 +1,7 @@
 package interfaces;
 
+import island.Cell;
+
 public interface Move {
-    void move();
+    void moveTo(Cell newCell);
 }

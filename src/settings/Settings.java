@@ -22,6 +22,8 @@ public class Settings {
     private int plantsNutritionalValue;
     private String plantEmoji;
 
+    AnimalCharacteristics[] animalCharacteristics;
+
 
     public static Settings initialize() {
         ObjectMapper objectMapper = new ObjectMapper();

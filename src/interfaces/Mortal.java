@@ -1,5 +1,6 @@
 package interfaces;
 
 public interface Mortal {
-    void die();
+    default void die() {
+    }
 }

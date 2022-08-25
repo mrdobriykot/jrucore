@@ -30,6 +30,10 @@ public class Island {
         return island[x][y];
     }
 
+    public Cell getCell(Coordinates coordinates) {
+        return island[coordinates.getX()][coordinates.getY()];
+    }
+
     public void initIsland() {
         for (int x =0; x< width; x++) {
             for (int y = 0; y < height; y++) {
