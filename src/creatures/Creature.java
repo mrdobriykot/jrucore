@@ -1,11 +1,15 @@
 package creatures;
 
 import interfaces.Mortal;
+import island.Cell;
 import island.Coordinates;
 import island.Island;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import settings.Settings;
+
+import java.util.Map;
 
 @Getter
 @Setter
@@ -15,8 +19,17 @@ public abstract class Creature implements Mortal {
     protected Island island;
     protected boolean isAlive = true;
     protected String name;
-    protected int weight;
+    protected double weight;
     protected String emoji;
+    protected Settings settings;
+    protected  int currentEnergy;
+    protected int maxEnergy;
+    protected double maxHunger;
+    protected double currentHanger;
+    protected int starve;
+    protected int maxCapacity;
+    protected Cell cell;
+    protected Map<String, Double> luck;
 
 
     public Creature(Coordinates coordinates, Island island) {

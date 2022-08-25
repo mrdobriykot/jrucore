@@ -2,6 +2,7 @@ package island;
 
 import lombok.Getter;
 import lombok.Setter;
+import settings.AnimalCharacteristics;
 import settings.Settings;
 
 @Getter
@@ -13,6 +14,7 @@ public class Island {
     private int width = settings.getWidth();
     private int height = settings.getHeight();
     Cell [][] island = new Cell[width][height];
+    AnimalCharacteristics[] animalCharacteristics = settings.getAnimalCharacteristics();
 
     static  {
         instance = new Island();
