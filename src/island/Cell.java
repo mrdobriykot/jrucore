@@ -51,13 +51,13 @@ public class Cell {
             creaturesInCell.remove(creature.getEmoji());
         }
     }
-    public Integer getHerbivoreAnimalsQuantity() {
+    public Integer getHerbivoreQuantity() {
         return fauna.stream()
                 .filter(HerbivoreAnimal.class::isInstance)
                 .toList()
                 .size();
     }
-    public Integer getCarnivoreAnimalsQuantity() {
+    public Integer getCarnivoreQuantity() {
         return fauna.stream()
                 .filter(CarnivoreAnimal.class::isInstance)
                 .toList()
