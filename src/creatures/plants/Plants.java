@@ -28,8 +28,14 @@ public class Plants extends Creature implements Mortal {
     @Override
     public void leaveCell() {
         Cell cell = island.getCell(getPosition());
-
+        cell.getFlora().remove(this);
+        cell.getQuantityOfGrass().merge(getEmoji(), 1L, (oldVal, newVal) -> oldVal - newVal);
+        if (cell.getQuantityOfGrass().get(getName()) < 0) {
+            cell.getQuantityOfGrass().remove(getName());
+        }
+        cell.removeThis(this);
     }
+
     @Override
     public void die() {
         super.die();

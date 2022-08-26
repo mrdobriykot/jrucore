@@ -10,6 +10,7 @@ import lombok.ToString;
 import settings.Settings;
 
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @Getter
 @Setter
@@ -22,7 +23,7 @@ public abstract class Creature implements Mortal {
     protected double weight;
     protected String emoji;
     protected Settings settings;
-    protected  int currentEnergy;
+    protected AtomicInteger currentEnergy = new AtomicInteger(0);
     protected int maxEnergy;
     protected double maxHunger;
     protected double currentHanger;
@@ -35,6 +36,9 @@ public abstract class Creature implements Mortal {
     public Creature(Coordinates coordinates, Island island) {
         this.coordinates = coordinates;
         this.island = island;
+        settings = island.getSettings();
+        cell = island.getCell(coordinates);
+        setName(this.getClass().getSimpleName());
     }
 
     public Coordinates getPosition() {
@@ -57,5 +61,19 @@ public abstract class Creature implements Mortal {
     @Override
     public String toString() {
         return "{" + name + '}';
+    }
+
+    public void restoreEnergy() {
+        if (currentEnergy.get() <= 0) {
+            currentEnergy.set(maxEnergy);
+            currentHanger -= maxEnergy;
+            if (currentHanger < 0) {
+                currentHanger = 0;
+                starve--;
+                if (starve < 0) {
+                    die();
+                }
+            }
+        }
     }
 }

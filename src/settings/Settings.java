@@ -33,7 +33,7 @@ public class Settings {
         }
         catch (IOException e) {
             throw new RuntimeException(e + " Проблема с файлом settings.json. " +
-                    "Check that it is in the settings root directory and matches the Settings() class");
+                    "Проверьте его наличие и корректность");
         }
         return settings;
     }

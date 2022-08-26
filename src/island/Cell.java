@@ -6,12 +6,16 @@ import creatures.animals.Animal;
 import creatures.animals.carnivore.CarnivoreAnimal;
 import creatures.animals.herbivore.HerbivoreAnimal;
 import creatures.plants.Plants;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+@Getter
+@Setter
 public class Cell {
     private Coordinates coordinates = new Coordinates();
     private Map<String, Long> creaturesInCell = new ConcurrentHashMap<>();

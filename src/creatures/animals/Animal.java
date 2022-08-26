@@ -34,7 +34,7 @@ public abstract class Animal extends Creature implements Move, Eat, Breed {
                 weight = animal.getWeight();
                 maxEnergy = animal.getMaxEnergy();
                 maxHunger = animal.getMaxHunger();
-                currentEnergy = animal.getCurrentEnergy();
+                currentEnergy.set(animal.getCurrentEnergy());
                 currentHanger = animal.getCurrentHunger();
                 luck = EatChanceTable.getEatChanceTable().get(animal.getName());
                 maxCapacity = animal.getMaxCapacity();
