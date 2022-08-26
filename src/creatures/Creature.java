@@ -63,6 +63,10 @@ public abstract class Creature implements Mortal {
         return "{" + name + '}';
     }
 
+    public int reduceEnergy() {
+        return currentEnergy.decrementAndGet();
+    }
+
     public void restoreEnergy() {
         if (currentEnergy.get() <= 0) {
             currentEnergy.set(maxEnergy);

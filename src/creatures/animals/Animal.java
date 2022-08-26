@@ -1,5 +1,6 @@
 package creatures.animals;
 
+import annotation.MaxCapacity;
 import creatures.Creature;
 import interfaces.Breed;
 import interfaces.*;
@@ -19,6 +20,7 @@ import java.util.List;
 public abstract class Animal extends Creature implements Move, Eat, Breed {
     protected int starve;
     protected List<Cell> accessibleCell = new ArrayList<>();
+    public List<String> logList = new ArrayList<>();
     protected AnimalCharacteristics[] animalCharacteristics;
 
     public Animal(Coordinates coordinates, Island island) {
@@ -26,6 +28,34 @@ public abstract class Animal extends Creature implements Move, Eat, Breed {
         settings = island.getSettings();
         starve = settings.getStarve();
         animalCharacteristics = island.getAnimalCharacteristics();
+    }
+
+    public Animal(int x, int y, Island island) {
+        super(new Coordinates(x, y), island);
+        settings = island.getSettings();
+        starve = settings.getStarve();
+        animalCharacteristics = island.getAnimalCharacteristics();
+    }
+
+    public abstract Cell choosingDirectionForEat();
+
+    @Override
+    public void moveTo(Cell newCell) {
+        reduceEnergy();
+        leaveCell();
+        newCell.addAnimalInCell(this);
+        setCoordinates(newCell.getCoordinates());
+    }
+
+    @Override
+    public void leaveCell() {
+        Cell cell = island.getCell(getPosition());
+        cell.getFauna().remove(this);
+        cell.getCurrentCapacityOfCell().merge(getEmoji(), 1, Integer::sum);
+        if (cell.getCurrentCapacityOfCell().get(getName()) >= getClass().getAnnotation(MaxCapacity.class).value()) {
+            cell.getCurrentCapacityOfCell().remove(getName());
+        }
+        cell.removeThis(this);
     }
 
     public void init() {
@@ -44,18 +74,9 @@ public abstract class Animal extends Creature implements Move, Eat, Breed {
         }
     }
 
-    @Override
-    public void breed() {
-
+    public void getThisPosition(Coordinates coordinates) {
+        setCell(island.getCell(coordinates));
+        cell.addAnimalInCell(this);
     }
 
-    @Override
-    public void eat() {
-
-    }
-
-    @Override
-    public void moveTo(Cell newCell) {
-
-    }
 }

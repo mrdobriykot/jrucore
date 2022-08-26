@@ -12,12 +12,17 @@ public class CarnivoreAnimal extends Animal {
     }
 
     @Override
-    public void leaveCell() {
+    public Cell choosingDirectionForEat() {
+        return null;
+    }
+
+    @Override
+    public void breed() {
 
     }
 
     @Override
-    public void moveTo(Cell newCell) {
+    public void eat() {
 
     }
 }
