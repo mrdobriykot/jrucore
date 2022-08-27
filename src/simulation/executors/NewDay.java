@@ -1,4 +1,4 @@
-package simulation;
+package simulation.executors;
 
 import creatures.Creature;
 import island.Island;

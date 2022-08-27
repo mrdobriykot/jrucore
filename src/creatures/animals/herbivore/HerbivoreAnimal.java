@@ -15,10 +15,14 @@ public class HerbivoreAnimal extends Animal {
     public HerbivoreAnimal(Coordinates coordinates, Island island) {
         super(coordinates, island);
     }
+    public HerbivoreAnimal(int x, int y, Island island) {
+        super(x, y, island);
+    }
 
     @Override
     public Cell choosingDirectionForEat() {
-        return getAccessibleCell().stream().max(Comparator.comparing(Cell::getHerbivoreQuantity))
+        return getAccessibleCell().stream()
+                .max(Comparator.comparing(Cell::getHerbivoreQuantity))
                 .orElse(accessibleCell.get(Randomizer.random(0, accessibleCell.size())));
     }
 
@@ -45,5 +49,4 @@ public class HerbivoreAnimal extends Animal {
         }
         reduceEnergy();
     }
-
 }

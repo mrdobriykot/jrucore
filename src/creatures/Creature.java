@@ -16,21 +16,22 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Setter
 @ToString
 public abstract class Creature implements Mortal {
+
     private Coordinates coordinates;
     protected Island island;
+    protected Settings settings;
     protected boolean isAlive = true;
     protected String name;
     protected double weight;
-    protected String emoji;
-    protected Settings settings;
-    protected AtomicInteger currentEnergy = new AtomicInteger(0);
     protected int maxEnergy;
+    protected AtomicInteger currentEnergy = new AtomicInteger(0);
     protected double maxHunger;
     protected double currentHanger;
     protected int starve;
     protected int maxCapacity;
-    protected Cell cell;
     protected Map<String, Double> luck;
+    protected Cell cell;
+    protected String emoji;
 
 
     public Creature(Coordinates coordinates, Island island) {
@@ -45,7 +46,7 @@ public abstract class Creature implements Mortal {
         return coordinates;
     }
 
-    public void setPosition() {
+    public void setPosition(Coordinates coordinates) {
         coordinates.setX(coordinates.getX());
         coordinates.setY(coordinates.getY());
     }

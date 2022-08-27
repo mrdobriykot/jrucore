@@ -47,7 +47,38 @@ public abstract class Animal extends Creature implements Move, Eat, Breed {
         reduceEnergy();
         leaveCell();
         newCell.addAnimalInCell(this);
-        setCoordinates(newCell.getCoordinates());
+        setPosition(newCell.getCoordinates());
+    }
+
+
+    @Override
+    public void breed() {
+        List<Animal> breeders = chooseForBreed();
+        if (!breeders.isEmpty()) {
+            Animal parentAnimal = breeders.get(Randomizer.random(0, breeders.size()));
+            bornNewAnimal(parentAnimal);
+            parentAnimal.reduceEnergy();
+            this.reduceEnergy();
+        } else {
+            initializeAccessibleCell();
+            moveTo(choosingDirectionForBreed());
+        }
+    }
+
+
+    public Cell choosingDirectionForBreed() {
+        return getAccessibleCell().stream()
+                .filter(e -> e.getCurrentCapacityOfCell()
+                        .containsKey(getName()))
+                .findFirst()
+                .orElse(accessibleCell.get(Randomizer.random(0, accessibleCell.size())));
+
+    }
+
+    public List<Animal> chooseForBreed() {
+        Cell cell = island.getCell(getPosition());
+        return cell.getFauna().stream().filter(e -> e.getName().equals(getName())
+                && !(e.equals(this)) && e.getCurrentEnergy().get() > 0 && e.currentHanger > e.maxHunger / 2).toList();
     }
 
     public Animal chooseVictim(List<Animal> accessibleAnimals) {
@@ -56,7 +87,6 @@ public abstract class Animal extends Creature implements Move, Eat, Breed {
                 .max(Comparator.comparing(Creature::getWeight))
                 .orElse(accessibleAnimals.get(Randomizer.random(0, accessibleAnimals.size())));
     }
-
 
     public void tryToEat(Animal victim) {
         Double luck = getLuck().get(victim.getName());
@@ -69,7 +99,6 @@ public abstract class Animal extends Creature implements Move, Eat, Breed {
             victim.die();
         }
     }
-
 
     protected void initializeAccessibleCell() {
         accessibleCell.clear();
@@ -94,6 +123,7 @@ public abstract class Animal extends Creature implements Move, Eat, Breed {
         Cell cell = island.getCell(getPosition());
         cell.getFauna().remove(this);
         cell.getCurrentCapacityOfCell().merge(getEmoji(), 1, Integer::sum);
+
         if (cell.getCurrentCapacityOfCell().get(getName()) >= getClass().getAnnotation(MaxCapacity.class).value()) {
             cell.getCurrentCapacityOfCell().remove(getName());
         }
@@ -119,35 +149,6 @@ public abstract class Animal extends Creature implements Move, Eat, Breed {
     public void getThisPosition(Coordinates coordinates) {
         setCell(island.getCell(coordinates));
         cell.addAnimalInCell(this);
-    }
-
-    @Override
-    public void breed() {
-        List<Animal> breeders = chooseForBreed();
-        if (!breeders.isEmpty()) {
-            Animal parentAnimal = breeders.get(Randomizer.random(0, breeders.size()));
-            bornNewAnimal(parentAnimal);
-            parentAnimal.reduceEnergy();
-            this.reduceEnergy();
-        } else {
-            initializeAccessibleCell();
-            moveTo(choosingDirectionForBreed());
-        }
-    }
-
-    public List<Animal> chooseForBreed() {
-        Cell cell = island.getCell(getPosition());
-        return cell.getFauna().stream().filter(e -> e.getName().equals(getName())
-                && !(e.equals(this)) && e.getCurrentEnergy().get() > 0 && e.currentHanger > e.maxHunger / 2).toList();
-    }
-
-    public Cell choosingDirectionForBreed() {
-        return getAccessibleCell().stream()
-                .filter(e -> e.getCurrentCapacityOfCell()
-                        .containsKey(getName()))
-                .findFirst()
-                .orElse(accessibleCell.get(Randomizer.random(0, accessibleCell.size())));
-
     }
 
     private void bornNewAnimal(Animal animal) {

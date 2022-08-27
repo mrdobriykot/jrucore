@@ -1,9 +1,10 @@
-package simulation;
+package simulation.executors;
 
 import creatures.animals.carnivore.*;
 import creatures.animals.herbivore.*;
 import helper.ExecutorsAwaitingConstants;
 import island.Island;
+import simulation.runnable.AnimalDeployer;
 
 import java.util.ArrayList;
 import java.util.List;

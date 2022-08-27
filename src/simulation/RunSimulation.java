@@ -3,6 +3,10 @@ package simulation;
 import helper.ExecutorsAwaitingConstants;
 import helper.GrassThreadFactory;
 import island.Island;
+import simulation.executors.FaunaCreation;
+import simulation.executors.NewDay;
+import simulation.runnable.ActingOfTheWorld;
+import simulation.runnable.GrassSeed;
 
 import java.util.Scanner;
 import java.util.concurrent.Executors;

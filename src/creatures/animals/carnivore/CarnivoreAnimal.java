@@ -14,6 +14,9 @@ public class CarnivoreAnimal extends Animal {
     public CarnivoreAnimal(Coordinates coordinates, Island island) {
         super(coordinates, island);
     }
+    public CarnivoreAnimal(int x, int y, Island island) {
+        super(x, y, island);
+    }
 
     @Override
     public Cell choosingDirectionForEat() {

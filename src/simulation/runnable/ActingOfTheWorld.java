@@ -1,4 +1,4 @@
-package simulation;
+package simulation.runnable;
 
 import helper.ExecutorsAwaitingConstants;
 import helper.StatisticPrinter;

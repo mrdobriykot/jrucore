@@ -1,4 +1,4 @@
-package simulation;
+package simulation.runnable;
 
 import annotation.MaxCapacity;
 import creatures.Creature;

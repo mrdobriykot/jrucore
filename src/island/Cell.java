@@ -8,6 +8,7 @@ import creatures.animals.herbivore.HerbivoreAnimal;
 import creatures.plants.Plants;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.util.List;
 import java.util.Map;
@@ -17,6 +18,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 @Getter
 @Setter
 public class Cell {
+    @ToString.Exclude
     private Coordinates coordinates = new Coordinates();
     private Map<String, Long> creaturesInCell = new ConcurrentHashMap<>();
     private Map<String, Integer> currentCapacityOfCell = new ConcurrentHashMap<>();

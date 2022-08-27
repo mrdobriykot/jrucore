@@ -1,5 +1,6 @@
 package creatures.plants;
 
+import annotation.MaxCapacity;
 import creatures.Creature;
 import interfaces.Mortal;
 import island.Cell;
@@ -9,9 +10,9 @@ import lombok.Getter;
 import settings.Settings;
 
 @Getter
+@MaxCapacity(200)
 public class Plants extends Creature implements Mortal {
     int maxCapacityInCell;
-    Settings settings;
 
 
     public Plants(Coordinates coordinates, Island island) {

@@ -1,4 +1,4 @@
-package simulation;
+package simulation.runnable;
 
 import creatures.plants.Plants;
 import helper.Randomizer;
