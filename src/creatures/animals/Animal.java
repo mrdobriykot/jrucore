@@ -2,6 +2,7 @@ package creatures.animals;
 
 import annotation.MaxCapacity;
 import creatures.Creature;
+import helper.Randomizer;
 import interfaces.Breed;
 import interfaces.*;
 import island.Cell;
@@ -13,6 +14,7 @@ import settings.AnimalCharacteristics;
 import settings.EatChanceTable;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 @Getter
@@ -47,6 +49,45 @@ public abstract class Animal extends Creature implements Move, Eat, Breed {
         setCoordinates(newCell.getCoordinates());
     }
 
+    public Animal chooseVictim(List<Animal> accessibleAnimals) {
+
+        return accessibleAnimals.stream()
+                .max(Comparator.comparing(Creature::getWeight))
+                .orElse(accessibleAnimals.get(Randomizer.random(0, accessibleAnimals.size())));
+    }
+
+
+    public void tryToEat(Animal victim) {
+        Double luck = getLuck().get(victim.getName());
+        if (Randomizer.random(0, 100) < luck) {
+            this.setCurrentHanger(getCurrentHanger() + victim.getWeight());
+            this.setStarve(settings.getStarve());
+            if (this.getCurrentHanger() > this.getMaxHunger()) {
+                this.setCurrentHanger(getMaxHunger());
+            }
+            victim.die();
+        }
+    }
+
+
+    protected void initializeAccessibleCell() {
+        accessibleCell.clear();
+        Coordinates coordinates = getPosition();
+
+        if (coordinates.getX() - 1 >= 0) {
+            accessibleCell.add(island.getCell(coordinates.getX() - 1, coordinates.getY()));
+        }
+        if (coordinates.getY() - 1 >= 0) {
+            accessibleCell.add(island.getCell(coordinates.getX(), coordinates.getY() - 1));
+        }
+        if ((coordinates.getX() + 1) < island.getWidth()) {
+            accessibleCell.add(island.getCell(coordinates.getX() + 1, coordinates.getY()));
+        }
+        if (coordinates.getY() + 1 < island.getHeight()) {
+            accessibleCell.add(island.getCell(coordinates.getX(), coordinates.getY() + 1));
+        }
+    }
+
     @Override
     public void leaveCell() {
         Cell cell = island.getCell(getPosition());
@@ -79,4 +120,14 @@ public abstract class Animal extends Creature implements Move, Eat, Breed {
         cell.addAnimalInCell(this);
     }
 
+    @Override
+    public void breed() {
+        List<Animal> breeders = chooseForBreed();
+    }
+
+    public List<Animal> chooseForBreed() {
+        Cell cell = island.getCell(getPosition());
+        return cell.getFauna().stream().filter(e -> e.getName().equals(getName())
+                && !(e.equals(this)) && e.getCurrentEnergy().get() > 0 && e.currentHanger > e.maxHunger / 2).toList();
+    }
 }
