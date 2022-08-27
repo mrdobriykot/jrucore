@@ -13,6 +13,7 @@ import lombok.Setter;
 import settings.AnimalCharacteristics;
 import settings.EatChanceTable;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -123,11 +124,41 @@ public abstract class Animal extends Creature implements Move, Eat, Breed {
     @Override
     public void breed() {
         List<Animal> breeders = chooseForBreed();
+        if (!breeders.isEmpty()) {
+            Animal parentAnimal = breeders.get(Randomizer.random(0, breeders.size()));
+            bornNewAnimal(parentAnimal);
+            parentAnimal.reduceEnergy();
+            this.reduceEnergy();
+        } else {
+            initializeAccessibleCell();
+            moveTo(choosingDirectionForBreed());
+        }
     }
 
     public List<Animal> chooseForBreed() {
         Cell cell = island.getCell(getPosition());
         return cell.getFauna().stream().filter(e -> e.getName().equals(getName())
                 && !(e.equals(this)) && e.getCurrentEnergy().get() > 0 && e.currentHanger > e.maxHunger / 2).toList();
+    }
+
+    public Cell choosingDirectionForBreed() {
+        return getAccessibleCell().stream()
+                .filter(e -> e.getCurrentCapacityOfCell()
+                        .containsKey(getName()))
+                .findFirst()
+                .orElse(accessibleCell.get(Randomizer.random(0, accessibleCell.size())));
+
+    }
+
+    private void bornNewAnimal(Animal animal) {
+
+        try {
+            Animal newAnimal = this.getClass().getConstructor(Coordinates.class).newInstance(this.getPosition());
+            newAnimal.getThisPosition(animal.getPosition());
+        } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException |
+                 InstantiationException e) {
+            System.out.println(e.getMessage());
+            throw new RuntimeException(e);
+        }
     }
 }
