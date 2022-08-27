@@ -1,6 +1,7 @@
 package simulation;
 
 import helper.ExecutorsAwaitingConstants;
+import helper.StatisticPrinter;
 import island.Cell;
 import island.Island;
 
@@ -13,7 +14,7 @@ public class ActingOfTheWorld implements Runnable {
     public static final String END_MESSAGE = "End of the day...";
     public static final int QUANTITY_OF_THREADS = 5;
     public Island island;
-    public StatisticsPrinter printer = new StatisticsPrinter();
+    public StatisticPrinter printer = new StatisticPrinter();
 
     public ExecutorService service = Executors.newFixedThreadPool(QUANTITY_OF_THREADS);
 
@@ -27,7 +28,7 @@ public class ActingOfTheWorld implements Runnable {
             for (int y = 0; y < island.getHeight(); y++) {
                 Cell cell = island.getCell(x, y);
                 if (!cell.getFauna().isEmpty()) {
-                    service.submit(new DayInCellProcessor(cell));
+                    service.submit(new DayInCellProc(cell));
                 }
             }
         }

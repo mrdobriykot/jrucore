@@ -1,6 +1,7 @@
 package simulation;
 
 import helper.ExecutorsAwaitingConstants;
+import helper.GrassThreadFactory;
 import island.Island;
 
 import java.util.Scanner;
@@ -16,12 +17,12 @@ public class RunSimulation {
     Scanner scanner = new Scanner(System.in);
     private ScheduledExecutorService grass = Executors.newScheduledThreadPool(1, new GrassThreadFactory());
 
-    public Runner(Island island) {
+    public RunSimulation(Island island) {
         this.island = island;
     }
     public void startSimulation() {
         new FaunaCreation(island).creation();
-        grass.scheduleAtFixedRate(new GrassSeeder(island), 0, 1, TimeUnit.MINUTES);
+        grass.scheduleAtFixedRate(new GrassSeed(island), 0, 1, TimeUnit.MINUTES);
         while (true) {
             System.out.println(NEW_DAY + ++day);
             beginNextDay();
