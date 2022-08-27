@@ -21,9 +21,9 @@ public class HerbivoreAnimal extends Animal {
 
     @Override
     public Cell choosingDirectionForEat() {
-        return getAccessibleCell().stream()
+        return getAccessibleCells().stream()
                 .max(Comparator.comparing(Cell::getHerbivoreQuantity))
-                .orElse(accessibleCell.get(Randomizer.random(0, accessibleCell.size())));
+                .orElse(accessibleCells.get(Randomizer.random(0, accessibleCells.size())));
     }
 
     @Override

@@ -15,7 +15,7 @@ public class EatChanceTable {
     static {
         try {
             eatChanceTable = new Gson().fromJson(Files.newBufferedReader(
-                    Path.of("src/configfiles/","luck.json")), HashMap.class);
+                    Path.of("chanceToEat.json")), HashMap.class);
         } catch (IOException e) {
             throw new RuntimeException(e + " " + "File luck.json is incorrect or not found");
         }

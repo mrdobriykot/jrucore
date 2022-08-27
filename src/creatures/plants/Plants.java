@@ -20,7 +20,7 @@ public class Plants extends Creature implements Mortal {
     }
 
     {
-        name = "Plants";
+        name = "Plant";
         weight = settings.getPlantsWeight();
         maxCapacityInCell = settings.getPlantsCapacityPerCell();
         emoji =settings.getPlantEmoji();

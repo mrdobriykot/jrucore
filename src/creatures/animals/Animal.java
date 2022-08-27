@@ -22,7 +22,7 @@ import java.util.List;
 @Setter
 public abstract class Animal extends Creature implements Move, Eat, Breed {
     protected int starve;
-    protected List<Cell> accessibleCell = new ArrayList<>();
+    protected List<Cell> accessibleCells = new ArrayList<>();
     public List<String> logList = new ArrayList<>();
     protected AnimalCharacteristics[] animalCharacteristics;
 
@@ -67,11 +67,11 @@ public abstract class Animal extends Creature implements Move, Eat, Breed {
 
 
     public Cell choosingDirectionForBreed() {
-        return getAccessibleCell().stream()
+        return getAccessibleCells().stream()
                 .filter(e -> e.getCurrentCapacityOfCell()
                         .containsKey(getName()))
                 .findFirst()
-                .orElse(accessibleCell.get(Randomizer.random(0, accessibleCell.size())));
+                .orElse(accessibleCells.get(Randomizer.random(0, accessibleCells.size())));
 
     }
 
@@ -101,20 +101,20 @@ public abstract class Animal extends Creature implements Move, Eat, Breed {
     }
 
     protected void initializeAccessibleCell() {
-        accessibleCell.clear();
+        accessibleCells.clear();
         Coordinates coordinates = getPosition();
 
         if (coordinates.getX() - 1 >= 0) {
-            accessibleCell.add(island.getCell(coordinates.getX() - 1, coordinates.getY()));
+            accessibleCells.add(island.getCell(coordinates.getX() - 1, coordinates.getY()));
         }
         if (coordinates.getY() - 1 >= 0) {
-            accessibleCell.add(island.getCell(coordinates.getX(), coordinates.getY() - 1));
+            accessibleCells.add(island.getCell(coordinates.getX(), coordinates.getY() - 1));
         }
         if ((coordinates.getX() + 1) < island.getWidth()) {
-            accessibleCell.add(island.getCell(coordinates.getX() + 1, coordinates.getY()));
+            accessibleCells.add(island.getCell(coordinates.getX() + 1, coordinates.getY()));
         }
         if (coordinates.getY() + 1 < island.getHeight()) {
-            accessibleCell.add(island.getCell(coordinates.getX(), coordinates.getY() + 1));
+            accessibleCells.add(island.getCell(coordinates.getX(), coordinates.getY() + 1));
         }
     }
 

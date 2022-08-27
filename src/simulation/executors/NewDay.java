@@ -38,6 +38,5 @@ public class NewDay {
             throw new RuntimeException(e + "Day was interrupted");
         }
         System.out.println(NEW_DAY_MESSAGE);
-
     }
 }

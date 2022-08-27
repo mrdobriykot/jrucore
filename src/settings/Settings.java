@@ -29,7 +29,7 @@ public class Settings {
         ObjectMapper objectMapper = new ObjectMapper();
         Settings settings;
         try {
-            settings = objectMapper.readValue(Files.newBufferedReader(Path.of("src/configfiles/","settings.json")), Settings.class);
+            settings = objectMapper.readValue(Files.newBufferedReader(Path.of("settings.json")), Settings.class);
         }
         catch (IOException e) {
             throw new RuntimeException(e + " Проблема с файлом settings.json. " +

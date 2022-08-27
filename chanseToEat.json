@@ -1,7 +1,7 @@
 {
   "Bear": {
     "Bear": 0,
-    "Boa": 80,
+    "Snake": 80,
     "Eagle": 0,
     "Fox": 0,
     "Wolf": 0,
@@ -17,9 +17,9 @@
     "Sheep": 70,
     "Plant" : 0
   },
-  "Boa" : {
+  "Snake" : {
     "Bear": 0,
-    "Boa": 0,
+    "Snake": 0,
     "Eagle": 0,
     "Fox": 0,
     "Wolf": 0,
@@ -37,7 +37,7 @@
   },
   "Eagle" : {
     "Bear": 0,
-    "Boa": 0,
+    "Snake": 0,
     "Eagle": 0,
     "Fox": 10,
     "Wolf": 0,
@@ -55,7 +55,7 @@
   },
   "Fox" : {
     "Bear": 0,
-    "Boa": 0,
+    "Snake": 0,
     "Eagle": 0,
     "Fox": 0,
     "Wolf": 0,
@@ -73,7 +73,7 @@
   },
   "Wolf" : {
     "Bear": 0,
-    "Boa": 0,
+    "Snake": 0,
     "Eagle": 0,
     "Fox": 0,
     "Wolf": 0,
@@ -91,7 +91,7 @@
   },
   "Boar" : {
     "Bear": 0,
-    "Boa": 0,
+    "Snake": 0,
     "Eagle": 0,
     "Fox": 0,
     "Wolf": 0,
@@ -109,7 +109,7 @@
   },
   "Buffalo" : {
     "Bear": 0,
-    "Boa": 0,
+    "Snake": 0,
     "Eagle": 0,
     "Fox": 0,
     "Wolf": 0,
@@ -127,7 +127,7 @@
   },
   "Caterpillar" : {
     "Bear": 0,
-    "Boa": 0,
+    "Snake": 0,
     "Eagle": 0,
     "Fox": 0,
     "Wolf": 0,
@@ -145,7 +145,7 @@
   },
   "Deer" : {
     "Bear": 0,
-    "Boa": 0,
+    "Snake": 0,
     "Eagle": 0,
     "Fox": 0,
     "Wolf": 0,
@@ -163,7 +163,7 @@
   },
   "Duck" : {
     "Bear": 0,
-    "Boa": 0,
+    "Snake": 0,
     "Eagle": 0,
     "Fox": 0,
     "Wolf": 0,
@@ -181,7 +181,7 @@
   },
   "Goat" : {
     "Bear": 0,
-    "Boa": 0,
+    "Snake": 0,
     "Eagle": 0,
     "Fox": 0,
     "Wolf": 0,
@@ -199,7 +199,7 @@
   },
   "Horse" : {
     "Bear": 0,
-    "Boa": 0,
+    "Snake": 0,
     "Eagle": 0,
     "Fox": 0,
     "Wolf": 0,
@@ -217,7 +217,7 @@
   },
   "Mouse" : {
     "Bear": 0,
-    "Boa": 0,
+    "Snake": 0,
     "Eagle": 0,
     "Fox": 0,
     "Wolf": 0,
@@ -235,7 +235,7 @@
   },
   "Rabbit" : {
     "Bear": 0,
-    "Boa": 0,
+    "Snake": 0,
     "Eagle": 0,
     "Fox": 0,
     "Wolf": 0,
@@ -253,7 +253,7 @@
   },
   "Sheep" : {
     "Bear": 0,
-    "Boa": 0,
+    "Snake": 0,
     "Eagle": 0,
     "Fox": 0,
     "Wolf": 0,
@@ -271,7 +271,7 @@
   },
   "Plant" : {
     "Bear": 0,
-    "Boa": 0,
+    "Snake": 0,
     "Eagle": 0,
     "Fox": 0,
     "Wolf": 0,
